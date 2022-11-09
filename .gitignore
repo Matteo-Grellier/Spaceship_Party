@@ -48,6 +48,3 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
-# Development Scenes
-*/Scenes/DevelopmentScenes
-/Scenes/DevelopmentScenes.meta
