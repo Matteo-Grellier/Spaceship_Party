@@ -5,6 +5,7 @@ public class Spaceship : MonoBehaviour
     public float maxSpeed;
     private int moveSpeed = 0;
     private int turnRotation = 0;
+    private int turnAngle = 0;
     public Transform orientation;
     private Rigidbody rb;
 
@@ -18,6 +19,7 @@ public class Spaceship : MonoBehaviour
     {
         int changeTurnRotationStatus = 0;
         int changeSpeedStatus = 0;
+        turnAngle = 0;
         if (Input.GetKey("w"))
         {
             changeSpeedStatus = 1;
@@ -29,13 +31,15 @@ public class Spaceship : MonoBehaviour
         if (Input.GetKey("a"))
         {
             changeTurnRotationStatus = -1;
+            turnAngle = 15;
         }
         if (Input.GetKey("d"))
         {
             changeTurnRotationStatus = 1;
+            turnAngle = -15;
         }
+        turnRotation += changeTurnRotationStatus;
         ChangeSpeed(changeSpeedStatus);
-        ChangeTurnRotationStatus(changeTurnRotationStatus);
         MaxSpeedControl(moveSpeed);
         MovePlayer(moveSpeed);
     }
@@ -49,25 +53,12 @@ public class Spaceship : MonoBehaviour
         {
             moveSpeed += changeSpeedStatus;
         }
-        Debug.Log(moveSpeed);
-    }
-
-    private void ChangeTurnRotationStatus(int changeTurnRotationStatus)
-    {
-        if ((turnRotation + changeTurnRotationStatus) > 70 || (turnRotation + changeTurnRotationStatus) < -70)
-        {
-            Debug.Log("Vous avez atteint les limites du gouvernail !");
-        }
-        else
-        {
-            turnRotation += changeTurnRotationStatus;
-        }
-        Debug.Log(turnRotation);
     }
 
     private void MovePlayer(int moveSpeed)
     {
-        rb.AddForce(0f, 0f, maxSpeed * moveSpeed, ForceMode.Force);
+        rb.AddRelativeForce(0f, 0f, maxSpeed * moveSpeed, ForceMode.Force);
+        transform.rotation = Quaternion.Euler(0, turnRotation, turnAngle);
     }
 
     private void MaxSpeedControl(int moveSpeed)
