@@ -17,11 +17,12 @@ public class DashboardButton : DashboardController
     }
     void OnMouseDown()
     {
+        // Debug.Log("Clicked");
         isClick = true;
     }
     void MoveDown()
     {
-        btn.transform.position = Vector3.Lerp(btn.transform.position, new Vector3(savePos.x, savePos.y-(gameObject.transform.localScale.x*0.015f), savePos.z), timeElapsed / lerpDuration);
+        btn.transform.position = Vector3.Lerp(btn.transform.position, new Vector3(savePos.x, savePos.y-newPosY, savePos.z), timeElapsed / lerpDuration);
         timeElapsed += Time.deltaTime;
     }
     void MoveUp()
