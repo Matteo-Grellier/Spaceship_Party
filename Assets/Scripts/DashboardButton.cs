@@ -10,7 +10,9 @@ public class DashboardButton : DashboardController
     private bool isDown = false;
     private Vector3 savePos;
     private float timeElapsed;
-    private float lerpDuration = 0.5f;
+    public float lerpDuration = 3;
+    private float time;
+
     void Start()
     {
         savePos = btn.transform.position;
