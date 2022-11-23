@@ -23,21 +23,18 @@ public class DashboardButton : DashboardController
     }
     void OnMouseDown()
     {
-        Debug.Log("Clicked");
+        // Debug.Log("Clicked");
         isClick = true;
     }
 
     void MoveDown()
     {
-        Debug.Log("dfghjkl");
-
         btn.transform.position = Vector3.Lerp(btn.transform.position, new Vector3(savePos.x, savePos.y-newPosY, savePos.z), timeElapsed / lerpDuration);
         timeElapsed += Time.deltaTime;
     }
 
     void MoveUp()
     {
-        Debug.Log("ureueueue");
 
         btn.transform.position = Vector3.Lerp(btn.transform.position, new Vector3(savePos.x, savePos.y, savePos.z), timeElapsed / lerpDuration);
         timeElapsed += Time.deltaTime;
@@ -61,11 +58,9 @@ public class DashboardButton : DashboardController
             }
             if (timeElapsed > lerpDuration)
             {
-                // isClick = false;  
                 isDown = true;
                 
-                timeElapsed = 0;
-                
+                timeElapsed = 0;           
             }
         }
         
