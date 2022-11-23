@@ -35,10 +35,10 @@ public class DashboardButton : DashboardController
 
     void MoveUp()
     {
-
         btn.transform.position = Vector3.Lerp(btn.transform.position, new Vector3(savePos.x, savePos.y, savePos.z), timeElapsed / lerpDuration);
         timeElapsed += Time.deltaTime;
     }
+
 
     void FixedUpdate()
     {
@@ -47,6 +47,11 @@ public class DashboardButton : DashboardController
             if(!isDown)
             {
                 MoveDown();
+                if (timeElapsed > lerpDuration)
+                {
+                isDown = true;
+                timeElapsed = 0;
+                }
             } 
             else
             {
@@ -54,6 +59,8 @@ public class DashboardButton : DashboardController
                 if (timeElapsed > lerpDuration)
                 {
                 isClick = false;  
+                isDown = false;
+                timeElapsed = 0;
                 }
             }
             if (timeElapsed > lerpDuration)
@@ -66,4 +73,3 @@ public class DashboardButton : DashboardController
         
     }
 }
-
