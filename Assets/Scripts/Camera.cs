@@ -8,6 +8,7 @@ public class Camera : MonoBehaviour
 
     private void Start()
     {
+        transform.LookAt(target);
         offset = transform.position - target.position;
         targetPreviousPosition = target.position;
     }
@@ -17,8 +18,10 @@ public class Camera : MonoBehaviour
         Vector3 targetMoveDirection = target.position - targetPreviousPosition;
         Vector3 desiredPosition = target.position - targetMoveDirection + offset;
         Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
-        transform.LookAt(target.position);
+
         transform.position = smoothedPosition;
         targetPreviousPosition = target.position;
+
+        transform.LookAt(target);
     }
 }

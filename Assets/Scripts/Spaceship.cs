@@ -2,19 +2,19 @@ using UnityEngine;
 
 public class Spaceship : MonoBehaviour
 {
+    private Rigidbody rb;
     public float maxSpeed;
     public float smoothSpeed = 0.125f;
     private int moveSpeed = 0;
-    private int turnRotation = 0;
-    private int turnAngle = 0;
-    private Transform orientation;
-    private Rigidbody rb;
+    private float turnRotation;
+    private float turnAngle;
 
     private void Start()
     {
-        orientation = GetComponent<Transform>();
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
+        turnRotation = transform.eulerAngles.y;
+        turnAngle = transform.eulerAngles.x;
     }
 
     private void FixedUpdate()
@@ -59,8 +59,8 @@ public class Spaceship : MonoBehaviour
 
     private void MovePlayer(int moveSpeed)
     {
-        rb.AddRelativeForce(0f, 0f, maxSpeed * moveSpeed, ForceMode.Force);
-        Quaternion desiredRotation = Quaternion.Euler(0, turnRotation, turnAngle);
+        rb.AddRelativeForce(0f, maxSpeed * moveSpeed, 0f, ForceMode.Force);
+        Quaternion desiredRotation = Quaternion.Euler(turnAngle, turnRotation, transform.eulerAngles.z);
         transform.rotation = Quaternion.Lerp(transform.rotation, desiredRotation, smoothSpeed);
     }
 
