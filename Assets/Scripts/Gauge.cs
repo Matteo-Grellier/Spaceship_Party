@@ -5,7 +5,7 @@ using UnityEngine;
 public class Gauge : MonoBehaviour
 {
     public float fuel = 1f;
-    private float jaugeHeight;
+    private float gaugeHeight;
     public GameObject cylinder;
     private Vector3 saveSize;
     private Vector3 savePos;
@@ -14,14 +14,22 @@ public class Gauge : MonoBehaviour
     void Start()
     {
         saveSize = cylinder.transform.localScale;
-        jaugeHeight = saveSize.y;
         savePos = cylinder.transform.position;
-        cylinder.transform.localScale = new Vector3(saveSize.x, jaugeHeight * fuel, saveSize.z);
+        gaugeHeight = saveSize.y;
+        cylinder.transform.localScale = new Vector3(saveSize.x, gaugeHeight * fuel, saveSize.z);
     }
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
-        cylinder.transform.localScale =  Vector3.Lerp(saveSize, new Vector3(saveSize.x, jaugeHeight * fuel, saveSize.z), 0.05f);
+        cylinder.transform.position = new Vector3(savePos.x, savePos.y, savePos.z);
+        
+        if (fuel < 0.4)
+        {
+            Debug.Log(savePos.y+fuel*0.0000034f);
+            cylinder.transform.position = new Vector3(savePos.x, savePos.y+0.0035f, savePos.z);
+            // cylinder.transform.position = new Vector3(savePos.x, savePos.y+fuel*0.0035f, savePos.z);
+        }
+        cylinder.transform.localScale =  Vector3.Lerp(saveSize, new Vector3(saveSize.x, gaugeHeight * fuel, saveSize.z), 0.04f);
         saveSize = cylinder.transform.localScale;
     }
 }
