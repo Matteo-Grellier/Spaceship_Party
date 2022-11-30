@@ -22,12 +22,9 @@ public class Gauge : MonoBehaviour
     void Update()
     {
         cylinder.transform.position = new Vector3(savePos.x, savePos.y, savePos.z);
-        
         if (fuel < 0.4)
         {
-            Debug.Log(savePos.y+fuel*0.0000034f);
             cylinder.transform.position = new Vector3(savePos.x, savePos.y+0.0035f, savePos.z);
-            // cylinder.transform.position = new Vector3(savePos.x, savePos.y+fuel*0.0035f, savePos.z);
         }
         cylinder.transform.localScale =  Vector3.Lerp(saveSize, new Vector3(saveSize.x, gaugeHeight * fuel, saveSize.z), 0.04f);
         saveSize = cylinder.transform.localScale;
