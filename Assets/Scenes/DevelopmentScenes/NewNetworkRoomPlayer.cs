@@ -96,12 +96,72 @@ public class NewNetworkRoomPlayer : NetworkRoomPlayer
 
     #endregion
 
-    #region Optional UI
+#region Optional UI
 
-    public override void OnGUI()
-    {
-        base.OnGUI();
-    }
+        /// <summary>
+        /// Render a UI for the room. Override to provide your own UI
+        /// </summary>
+        public override void OnGUI()
+        {
+            if (!showRoomGUI)
+                return;
 
-    #endregion
+            NetworkRoomManager room = NetworkManager.singleton as NetworkRoomManager;
+            if (room)
+            {
+                if (!room.showRoomGUI)
+                    return;
+
+                if (!NetworkManager.IsSceneActive(room.RoomScene))
+                    return;
+
+                DrawPlayerReadyState();
+                DrawPlayerReadyButton();
+            }
+        }
+
+        void DrawPlayerReadyState()
+        {
+            GUILayout.BeginArea(new Rect(20f + (index * 100), 200f, 90f, 130f));
+
+            GUILayout.Label($"Player [{index + 1}]");
+
+            if (readyToBegin)
+                GUILayout.Label("Ready");
+            else
+                GUILayout.Label("Not Ready");
+
+            if (((isServer && index > 0) || isServerOnly) && GUILayout.Button("REMOVE"))
+            {
+                // This button only shows on the Host for all players other than the Host
+                // Host and Players can't remove themselves (stop the client instead)
+                // Host can kick a Player this way.
+                GetComponent<NetworkIdentity>().connectionToClient.Disconnect();
+            }
+
+            GUILayout.EndArea();
+        }
+
+        void DrawPlayerReadyButton()
+        {
+            if (NetworkClient.active && isLocalPlayer)
+            {
+                GUILayout.BeginArea(new Rect(20f, 300f, 120f, 20f));
+
+                if (readyToBegin)
+                {
+                    if (GUILayout.Button("Cancel"))
+                        CmdChangeReadyState(false);
+                }
+                else
+                {
+                    if (GUILayout.Button("Ready"))
+                        CmdChangeReadyState(true);
+                }
+
+                GUILayout.EndArea();
+            }
+        }
+
+        #endregion
 }
