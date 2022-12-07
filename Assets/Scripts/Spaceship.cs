@@ -50,7 +50,7 @@ public class Spaceship : MonoBehaviour
     {
         if ((moveSpeed + changeSpeedStatus) > 10 || (moveSpeed + changeSpeedStatus) < 0)
         {
-            Debug.Log("Vous avez atteint les limites des réacteurs !");
+            Debug.Log("Vous avez atteint les limites des rï¿½acteurs !");
         } else
         {
             moveSpeed += changeSpeedStatus;
@@ -59,8 +59,8 @@ public class Spaceship : MonoBehaviour
 
     private void MovePlayer(int moveSpeed)
     {
-        rb.AddRelativeForce(0f, maxSpeed * moveSpeed, 0f, ForceMode.Force);
-        Quaternion desiredRotation = Quaternion.Euler(turnAngle, turnRotation, transform.eulerAngles.z);
+        rb.AddRelativeForce(maxSpeed * moveSpeed, 0f, 0f, ForceMode.Force);
+        Quaternion desiredRotation = Quaternion.Euler(turnAngle, turnRotation, 0f);
         transform.rotation = Quaternion.Lerp(transform.rotation, desiredRotation, smoothSpeed);
     }
 
