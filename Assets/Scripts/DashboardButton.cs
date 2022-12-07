@@ -58,8 +58,7 @@ public class DashboardButton : DashboardController
                 isDown = true;
                 
                 timeElapsed = 0;           
-            }
         }
-        
+        }
     }
 }
