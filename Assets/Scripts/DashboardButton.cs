@@ -6,6 +6,7 @@ using UnityEngine;
 public class DashboardButton : DashboardController
 {   
     public GameObject btn;
+    // private float newPosY;
     private bool isClick = false;
     private bool isDown = false;
     private Vector3 savePos;
