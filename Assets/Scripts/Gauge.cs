@@ -14,18 +14,12 @@ public class Gauge : MonoBehaviour
     void Start()
     {
         saveSize = cylinder.transform.localScale;
-        savePos = cylinder.transform.position;
         gaugeHeight = saveSize.y;
         cylinder.transform.localScale = new Vector3(saveSize.x, gaugeHeight * fuel, saveSize.z);
     }
     // Update is called once per frame
     void Update()
     {
-        cylinder.transform.position = new Vector3(savePos.x, savePos.y, savePos.z);
-        if (fuel < 0.4)
-        {
-            cylinder.transform.position = new Vector3(savePos.x, savePos.y+0.0035f, savePos.z);
-        }
         cylinder.transform.localScale =  Vector3.Lerp(saveSize, new Vector3(saveSize.x, gaugeHeight * fuel, saveSize.z), 0.04f);
         saveSize = cylinder.transform.localScale;
     }
