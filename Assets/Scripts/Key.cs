@@ -4,7 +4,7 @@ public class Key : MonoBehaviour
 {
     public float smoothSpeed = 0.125f;
     private bool startStop = false;
-    public float angleOpenKey = -75f;
+    public float angleOpenKey = -90f;
 
     private void RotateKeyLeft()
     {
