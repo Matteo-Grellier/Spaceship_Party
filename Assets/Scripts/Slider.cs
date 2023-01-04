@@ -1,18 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Slider : DashboardController
+public class Slider : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+
+    public float smoothSpeed = 500f;
+    private float sliderAngle = 0f;
+
+    void Start() 
     {
-        
+        RotateSlider();
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnMouseDrag()
     {
-        
+        RotateSlider();
+    }
+
+    private void RotateSlider() 
+    {
+        sliderAngle += Input.GetAxis("Mouse Y") * smoothSpeed * Time.deltaTime;
+        Debug.Log(Input.GetAxis("Mouse Y") + " | " +  smoothSpeed + " | " + -Time.deltaTime);
+        sliderAngle = Mathf.Clamp(sliderAngle, -35, 39);
+        gameObject.transform.rotation = Quaternion.AngleAxis(sliderAngle, Vector3.forward); // turn around x axis
     }
 }
