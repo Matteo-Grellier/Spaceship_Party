@@ -6,40 +6,29 @@ using UnityEngine;
 public class DashboardButton : DashboardController
 {   
     public GameObject btn;
-    public float newPosY;
     private bool isClick = false;
     private bool isDown = false;
     private Vector3 savePos;
-
     private float timeElapsed;
-    public float lerpDuration = 3;
-
+    private float lerpDuration = 0.5f;
     void Start()
     {
-        // btn = gameObject.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject;
-        // Debug.Log(btn);
-        // posInitY = btn.transform.position.y;
         savePos = btn.transform.position;
     }
     void OnMouseDown()
     {
-        // Debug.Log("Clicked");
         isClick = true;
     }
-
     void MoveDown()
     {
-        btn.transform.position = Vector3.Lerp(btn.transform.position, new Vector3(savePos.x, savePos.y-newPosY, savePos.z), timeElapsed / lerpDuration);
+        btn.transform.position = Vector3.Lerp(btn.transform.position, new Vector3(savePos.x, savePos.y-(gameObject.transform.localScale.x*0.015f), savePos.z), timeElapsed / lerpDuration);
         timeElapsed += Time.deltaTime;
     }
-
     void MoveUp()
     {
         btn.transform.position = Vector3.Lerp(btn.transform.position, new Vector3(savePos.x, savePos.y, savePos.z), timeElapsed / lerpDuration);
         timeElapsed += Time.deltaTime;
     }
-
-
     void FixedUpdate()
     {
         if(isClick)
