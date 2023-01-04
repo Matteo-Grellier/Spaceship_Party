@@ -60,7 +60,7 @@ public class Spaceship : MonoBehaviour
     private void MovePlayer(int moveSpeed)
     {
         rb.AddRelativeForce(0f, 0f, maxSpeed * moveSpeed, ForceMode.Force);
-        Quaternion desiredRotation = Quaternion.Euler(turnAngle, turnRotation, 0f);
+        Quaternion desiredRotation = Quaternion.Euler(0f, turnRotation, turnAngle);
         transform.rotation = Quaternion.Lerp(transform.rotation, desiredRotation, smoothSpeed);
     }
 
