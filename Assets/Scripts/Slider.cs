@@ -19,7 +19,6 @@ public class Slider : MonoBehaviour
     void OnMouseDrag()
     {
         RotateSlider();
-        Debug.Log(GetValue());
     }
 
     private void RotateSlider() 
@@ -28,7 +27,6 @@ public class Slider : MonoBehaviour
         sliderAngle = Mathf.Clamp(sliderAngle, -35, 39);
         gameObject.transform.rotation = Quaternion.AngleAxis(sliderAngle, Vector3.forward); // turn around x axis
     }
-
     public float GetValue() {
         float sliderAngleValue = (sliderAngle - (-35)) * (74 - 0) / (39 - (-35)) + 0;
         return sliderAngleValue/74;
