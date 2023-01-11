@@ -21,6 +21,6 @@ public class Slider : MonoBehaviour
         sliderAngle += Input.GetAxis("Mouse Y") * smoothSpeed * Time.deltaTime;
         Debug.Log(Input.GetAxis("Mouse Y") + " | " +  smoothSpeed + " | " + -Time.deltaTime);
         sliderAngle = Mathf.Clamp(sliderAngle, -35, 39);
-        gameObject.transform.rotation = Quaternion.AngleAxis(sliderAngle, Vector3.forward); // turn around x axis
+        gameObject.transform.rotation = Quaternion.AngleAxis(sliderAngle, Vector3.right); // turn around x axis
     }
 }
