@@ -4,11 +4,13 @@ public class Spaceship : MonoBehaviour
 {
     private Rigidbody rb;
     public Slider slider;
+    public Rudder rudder;
     public float multiplierSpeed;
     public float smoothSpeed = 0.125f;
     private float turnRotation;
     private float turnAngle;
     private float oldAccelerationValue;
+    private float oldAngleValue;
 
     private void Start()
     {
@@ -20,28 +22,25 @@ public class Spaceship : MonoBehaviour
 
     private void FixedUpdate()
     {
-        int changeTurnRotationStatus = 0;
+        turnRotation = rudder.GetValue();
         turnAngle = 0;
-        if (Input.GetKey("a"))
+        if (turnRotation > oldAngleValue)
         {
-            changeTurnRotationStatus = -1;
             turnAngle = 15;
-        }
-        if (Input.GetKey("d"))
+        } else
         {
-            changeTurnRotationStatus = 1;
             turnAngle = -15;
         }
-        turnRotation += changeTurnRotationStatus;
         MovePlayer(slider.GetValue());
         oldAccelerationValue = slider.GetValue();
+        oldAngleValue = turnRotation;
     }
     
     private void MovePlayer(float moveSpeed)
     {
         moveSpeed -= oldAccelerationValue;
         rb.AddRelativeForce(0f, 0f, multiplierSpeed * moveSpeed, ForceMode.Force);
-        Quaternion desiredRotation = Quaternion.Euler(0f, turnAngle, turnRotation);
+        Quaternion desiredRotation = Quaternion.Euler(0f, turnRotation, turnAngle);
         transform.rotation = Quaternion.Lerp(transform.rotation, desiredRotation, smoothSpeed);
     }
 }
