@@ -8,6 +8,9 @@ public class Rudder : MonoBehaviour
         Quaternion desiredRotation = Quaternion.Euler(0, sliderAngle, 0);
         transform.rotation = Quaternion.Lerp(gameObject.transform.rotation, desiredRotation, smoothSpeed);
     }
+    public float GetValue() {
+        return sliderAngle;
+    }
     void OnMouseDrag()
     {
         sliderAngle = Input.mousePosition.x;
