@@ -1,6 +1,7 @@
 using UnityEngine;
+using Mirror;
 
-public class Camera : MonoBehaviour
+public class Camera : NetworkBehaviour
 {
     public Transform target;
     public float smoothSpeed = 0.125f;
@@ -8,6 +9,7 @@ public class Camera : MonoBehaviour
 
     private void Start()
     {
+        target = NetworkClient.localPlayer.gameObject.transform;
         transform.LookAt(target);
         offset = transform.position - target.position;
         targetPreviousPosition = target.position;

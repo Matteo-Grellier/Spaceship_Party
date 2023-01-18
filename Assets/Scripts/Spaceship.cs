@@ -1,10 +1,11 @@
 using UnityEngine;
+using Mirror;
 
-public class Spaceship : MonoBehaviour
+public class Spaceship : NetworkBehaviour
 {
     private Rigidbody rb;
-    public Slider slider;
-    public Rudder rudder;
+    private Rudder rudder;
+    private Slider slider;
     public float multiplierSpeed;
     public float smoothSpeed = 0.125f;
     private float turnRotation;
@@ -12,8 +13,10 @@ public class Spaceship : MonoBehaviour
     private float oldAccelerationValue;
     private float oldAngleValue;
 
-    private void Start()
+    private void Awake()
     {
+        slider = GameObject.Find("poignee2").GetComponent<Slider>();
+        rudder = GameObject.Find("gouvernail").GetComponent<Rudder>();
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         turnRotation = transform.eulerAngles.y;
@@ -22,6 +25,8 @@ public class Spaceship : MonoBehaviour
 
     private void FixedUpdate()
     {
+      if (isLocalPlayer){
+
         turnRotation = rudder.GetValue();
         turnAngle = 0;
         if (turnRotation > oldAngleValue)
@@ -34,6 +39,7 @@ public class Spaceship : MonoBehaviour
         MovePlayer(slider.GetValue());
         oldAccelerationValue = slider.GetValue();
         oldAngleValue = turnRotation;
+      }
     }
     
     private void MovePlayer(float moveSpeed)
