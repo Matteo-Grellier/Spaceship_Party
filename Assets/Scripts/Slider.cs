@@ -13,7 +13,7 @@ public class Slider : MonoBehaviour
         //Debug.Log(transform.rotation.y);
         //Debug.Log(transform.rotation);
         //transform.Rotate(new Vector3(0, 0, 0));
-        //RotateSlider();
+        RotateSlider();
     }
 
     void OnMouseDrag()

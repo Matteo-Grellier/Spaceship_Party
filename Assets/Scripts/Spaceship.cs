@@ -44,7 +44,7 @@ public class Spaceship : NetworkBehaviour
     
     private void MovePlayer(float moveSpeed)
     {
-        moveSpeed -= oldAccelerationValue;
+        // moveSpeed -= oldAccelerationValue;
         rb.AddRelativeForce(0f, 0f, multiplierSpeed * moveSpeed, ForceMode.Force);
         Quaternion desiredRotation = Quaternion.Euler(0f, turnRotation, turnAngle);
         transform.rotation = Quaternion.Lerp(transform.rotation, desiredRotation, smoothSpeed);
