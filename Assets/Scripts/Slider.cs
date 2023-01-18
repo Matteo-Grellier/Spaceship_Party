@@ -25,7 +25,7 @@ public class Slider : MonoBehaviour
     {
         sliderAngle += Input.GetAxis("Mouse Y") * smoothSpeed * Time.deltaTime;
         Debug.Log(Input.GetAxis("Mouse Y") + " | " +  smoothSpeed + " | " + -Time.deltaTime);
-        sliderAngle = Mathf.Clamp(sliderAngle, -35, 39);
+        sliderAngle = Mathf.Clamp(sliderAngle, -45, 30);
 
         Vector3 rotationAxis;
         Vector3 rotationEulers;
