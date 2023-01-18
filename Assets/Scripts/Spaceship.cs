@@ -8,6 +8,9 @@ public class Spaceship : MonoBehaviour
     private int moveSpeed = 0;
     private float turnRotation;
     private float turnAngle;
+    public bool isInEffectZone = false;
+    public bool canRecharge = false;
+    public bool canBoost = false;
 
     private void Start()
     {
