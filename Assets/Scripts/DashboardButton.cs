@@ -23,7 +23,7 @@ public class DashboardButton : DashboardController
     }
     void MoveDown()
     {
-        btn.transform.position = Vector3.Lerp(btn.transform.position, new Vector3(savePos.x, -(gameObject.transform.localScale.x*0.0175f), savePos.z), timeElapsed / lerpDuration);
+        btn.transform.position = Vector3.Lerp(btn.transform.position, new Vector3(savePos.x, savePos.y-(gameObject.transform.localScale.x*0.0175f), savePos.z), timeElapsed / lerpDuration);
         timeElapsed += Time.deltaTime;
     }
     void MoveUp()
