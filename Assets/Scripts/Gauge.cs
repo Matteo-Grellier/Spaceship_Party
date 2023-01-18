@@ -23,7 +23,6 @@ public class Gauge : MonoBehaviour
     void Update()
     {
         cylinder.transform.localScale =  Vector3.Lerp(saveSize, new Vector3(saveSize.x, gaugeHeight * fuel, saveSize.z), 0.04f);
-
         saveSize = cylinder.transform.localScale;
     }
 }
