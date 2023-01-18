@@ -1160,6 +1160,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1470810000884802831, guid: 3b87d40ea8b0cff449bbc8a5c66b849c, type: 3}
+      propertyPath: slider
+      value: 
+      objectReference: {fileID: 458864615}
+    - target: {fileID: 1470810000884802831, guid: 3b87d40ea8b0cff449bbc8a5c66b849c, type: 3}
+      propertyPath: fuelMultiplier
+      value: 0.001
+      objectReference: {fileID: 0}
     - target: {fileID: 1776727462831426905, guid: 3b87d40ea8b0cff449bbc8a5c66b849c, type: 3}
       propertyPath: m_Name
       value: jauge
