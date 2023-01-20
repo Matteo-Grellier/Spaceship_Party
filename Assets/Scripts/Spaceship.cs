@@ -26,7 +26,7 @@ public class Spaceship : NetworkBehaviour
     private void FixedUpdate()
     {
       if (isLocalPlayer){
-
+        
         turnRotation = rudder.GetValue();
         turnAngle = 0;
         if (turnRotation > oldAngleValue)
@@ -40,8 +40,11 @@ public class Spaceship : NetworkBehaviour
         oldAccelerationValue = slider.GetValue();
         oldAngleValue = turnRotation;
       }
+      else
+      {
+        transform.Find("Camera").gameObject.SetActive(false);
+      }
     }
-    
     private void MovePlayer(float moveSpeed)
     {
         // moveSpeed -= oldAccelerationValue;

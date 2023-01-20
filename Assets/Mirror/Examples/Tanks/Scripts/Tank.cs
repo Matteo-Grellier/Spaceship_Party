@@ -40,7 +40,6 @@ namespace Mirror.Examples.Tanks
                 Vector3 forward = transform.TransformDirection(Vector3.forward);
                 agent.velocity = forward * Mathf.Max(vertical, 0) * agent.speed;
                 animator.SetBool("Moving", agent.velocity != Vector3.zero);
-
                 // shoot
                 if (Input.GetKeyDown(shootKey))
                 {
