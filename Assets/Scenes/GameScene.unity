@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18029143, g: 0.22572419, b: 0.30693057, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -418,8 +418,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 662961e21ec76c341bb39028ea88e680, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slider: {fileID: 458864615}
-  rudder: {fileID: 2012309616}
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0.1
   multiplierSpeed: 10
   smoothSpeed: 0.125
 --- !u!54 &333596645
@@ -539,17 +540,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d7df81b60d151e47a3258fb5337d2bb, type: 3}
---- !u!114 &458864615 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3097217615786761827, guid: 557b9714a23c21f4b8dfd4a970ba8c0e, type: 3}
-  m_PrefabInstance: {fileID: 536049224}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c04b82f73db5904eb637d2f4d746dfc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &536049224
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1012,7 +1002,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b68d459cdca63a541806b665e2f237d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 1329667377}
   smoothSpeed: 0.125
   offset: {x: 0, y: 2, z: -2}
 --- !u!1 &1216900611
@@ -1218,11 +1207,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b9568ff3ee0cefc40a960c4204f52ea5, type: 3}
---- !u!4 &1329667377 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b9568ff3ee0cefc40a960c4204f52ea5, type: 3}
-  m_PrefabInstance: {fileID: 1329667376}
+--- !u!114 &1329667380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 333596643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 3308215580
+  _assetId: 2981102321
+  serverOnly: 0
+  visible: 0
+  hasSpawned: 0
 --- !u!1 &1461744104
 GameObject:
   m_ObjectHideFlags: 0

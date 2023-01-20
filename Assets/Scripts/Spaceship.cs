@@ -32,9 +32,12 @@ public class Spaceship : NetworkBehaviour
         if (turnRotation > oldAngleValue)
         {
             turnAngle = 15;
-        } else
+        } else if (turnRotation < oldAngleValue)
         {
             turnAngle = -15;
+        }else
+        {
+            turnAngle = 0;
         }
         MovePlayer(slider.GetValue());
         oldAccelerationValue = slider.GetValue();
