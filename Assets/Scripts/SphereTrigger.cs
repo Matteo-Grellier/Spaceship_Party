@@ -7,7 +7,7 @@ public class SphereTrigger : MonoBehaviour
     private bool isPlanet = false;
     private float vx = 1f;
     private float vz = 1f;
-
+    
     private void FixedUpdate()
     {
         rb.AddRelativeForce(vx, 0f, vz, ForceMode.Force);
@@ -42,6 +42,11 @@ public class SphereTrigger : MonoBehaviour
         if (other.gameObject.name == "player")
         {
             other.GetComponent<Spaceship>().isInEffectZone = false;
+
+            rb = other.GetComponent<Rigidbody>();
+            vx *= 0f;
+            vz *= 0f;
+            rb.AddRelativeForce(0f, 0f, 0f, ForceMode.Force);
 
             if (isSun)
             {
