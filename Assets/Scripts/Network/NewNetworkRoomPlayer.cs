@@ -1,5 +1,6 @@
 using UnityEngine;
 using Mirror;
+using UnityEngine.UI;
 
 /*
 	Documentation: https://mirror-networking.gitbook.io/docs/components/network-room-player
@@ -128,8 +129,10 @@ public class NewNetworkRoomPlayer : NetworkRoomPlayer
 
             if (readyToBegin)
                 GUILayout.Label("Ready");
+                // GameObject.Find("ReadyButton").GetComponent<Text>().text = "NotReady";
             else
                 GUILayout.Label("Not Ready");
+                // GameObject.Find("ReadyButton").GetComponent<Text>().text = "NotReady";
 
             if (((isServer && index > 0) || isServerOnly) && GUILayout.Button("REMOVE"))
             {

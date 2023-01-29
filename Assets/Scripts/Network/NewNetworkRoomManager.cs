@@ -181,13 +181,13 @@ public class NewNetworkRoomManager : NetworkRoomManager
         if (!showRoomGUI)
                 return;
 
-        if (NetworkServer.active && IsSceneActive(GameplayScene))
-        {
-            GUILayout.BeginArea(new Rect(Screen.width - 150f, 10f, 140f, 30f));
-            if (GUILayout.Button("Return to Room"))
-                ServerChangeScene(RoomScene);
-            GUILayout.EndArea();
-        }
+        // if (NetworkServer.active && IsSceneActive(GameplayScene))
+        // {
+        //     GUILayout.BeginArea(new Rect(Screen.width - 150f, 10f, 140f, 30f));
+        //     if (GUILayout.Button("Return to Room"))
+        //         ServerChangeScene(RoomScene);
+        //     GUILayout.EndArea();
+        // }
 
         if (IsSceneActive(RoomScene))
             GUI.Box(new Rect(10f, 180f, 520f, 150f), "PLAYERS");

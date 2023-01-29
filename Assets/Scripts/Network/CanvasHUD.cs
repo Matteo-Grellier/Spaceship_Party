@@ -3,35 +3,78 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class CanvasHUD : NetworkBehaviour
+public class CanvasHUD : MonoBehaviour
 {
-	
-	public GameObject PanelStart;
-	public GameObject PanelStop;
 
-	public Button buttonHost, buttonServer, buttonClient, buttonStop;
+    public GameObject PanelOffline, PanelRoom, PanelGame;
+    
+    private string actualScene, lastScene;
+    public Button buttonHost, buttonServer, buttonClient, buttonStop;
 
-	public InputField inputFieldAddress;
+    public InputField inputFieldAddress;
 
-	public Text serverText;
-	public Text clientText;
-	
+    public Text serverText;
+    public Text clientText;
+
     private void Start()
     {
-        //Update the canvas text if you have manually changed network managers address from the game object before starting the game scene
-        if (NetworkManager.singleton.networkAddress != "localhost") { inputFieldAddress.text = NetworkManager.singleton.networkAddress; }
-
-        //Adds a listener to the main input field and invokes a method when the value changes.
-        inputFieldAddress.onValueChanged.AddListener(delegate { ValueChangeCheck(); });
-
-        //Make sure to attach these Buttons in the Inspector
-        buttonHost.onClick.AddListener(ButtonHost);
-        buttonServer.onClick.AddListener(ButtonServer);
-        buttonClient.onClick.AddListener(ButtonClient);
-        buttonStop.onClick.AddListener(ButtonStop);
+        switch (SceneManager.GetActiveScene().name)
+        {
+          case "Scene_Room":
+            RoomScene();
+            break;
+          case "GameScene":
+            GameScene();
+            break;
+          case "Scene_Offline":
+            OfflineScene();
+            break;
+        }
 
         //This updates the Unity canvas, we have to manually call it every change, unlike legacy OnGUI.
         SetupCanvas();
+    }
+    private void Update() {
+      actualScene = SceneManager.GetActiveScene().name;
+      bool hasChanged = false;
+      if (lastScene != actualScene)
+      {
+        hasChanged = true;
+      }
+      if (hasChanged == true)
+      {
+        hasChanged = false;
+        lastScene = actualScene;
+        Start();
+      }
+    }
+    public void OfflineScene()
+    {
+        PanelOffline.SetActive(true);
+        PanelGame.SetActive(false);
+        PanelRoom.SetActive(false);
+
+        buttonHost.onClick.AddListener(ButtonHost);
+        buttonServer.onClick.AddListener(ButtonServer);
+        buttonClient.onClick.AddListener(ButtonClient);
+
+        inputFieldAddress.onValueChanged.AddListener(delegate { ValueChangeCheck(); });
+    }
+    public void GameScene() 
+    {
+        PanelOffline.SetActive(false);
+        PanelGame.SetActive(true);
+        PanelRoom.SetActive(false);
+        serverText.text = "Server: active. Transport: " + Transport.active;
+        clientText.text = "Client: address=" + NetworkManager.singleton.networkAddress;
+        buttonStop.onClick.AddListener(ButtonStop);
+    }
+
+    public void RoomScene()
+    {
+      PanelOffline.SetActive(false);
+      PanelGame.SetActive(false);
+      PanelRoom.SetActive(true);
     }
 
     // Invoked when the value of the text field changes.
@@ -81,36 +124,7 @@ public class CanvasHUD : NetworkBehaviour
 
     public void SetupCanvas()
     {
-        // Here we will dump majority of the canvas UI that may be changed.
-				
-        if (!NetworkClient.isConnected && !NetworkServer.active)
-        {
-            if (NetworkClient.active)
-            {
-                PanelStart.SetActive(true);
-                PanelStop.SetActive(true);
-                clientText.text = "Connecting to " + NetworkManager.singleton.networkAddress + "..";
-            }
-            else
-            {
-                PanelStart.SetActive(true);
-                PanelStop.SetActive(false);
-            }
-        }
-        else
-        {
-            PanelStart.SetActive(true);
-            PanelStop.SetActive(true);
-
-            // server / client status message
-            if (NetworkServer.active)
-            {
-                serverText.text = "Server: active. Transport: " + Transport.active;
-            }
-            if (NetworkClient.isConnected)
-            {
-                clientText.text = "Client: address=" + NetworkManager.singleton.networkAddress;
-            }
-        }
+        DontDestroyOnLoad(gameObject);
+        Update();
     }
 }
