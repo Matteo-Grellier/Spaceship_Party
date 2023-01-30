@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class Gauge : MonoBehaviour
 {
+    public Slider slider;
     public float fuel = 1f;
     private float gaugeHeight;
     public GameObject cylinder;
     private Vector3 saveSize;
-    private Vector3 savePos;
+    public float fuelMultiplier = 0.001f;
 
     // Start is called before the first frame update
     void Start()
@@ -20,10 +21,29 @@ public class Gauge : MonoBehaviour
 
     }
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        cylinder.transform.localScale =  Vector3.Lerp(saveSize, new Vector3(saveSize.x, gaugeHeight * fuel, saveSize.z), 0.04f);
-
+        cylinder.transform.localScale = new Vector3(saveSize.x, gaugeHeight * fuel, saveSize.z);
         saveSize = cylinder.transform.localScale;
+        FuelConsumer();
+    }
+
+    private void FuelConsumer()
+    {
+        float sliderPower = slider.GetValue();
+        if(fuel > 0.0){
+            slider.canBeMove = true;
+            fuel = fuel - (sliderPower * fuelMultiplier);
+        } else {
+            fuel = 0f;
+            slider.canBeMove = false;
+            Vector3 rotationAxis;
+            Vector3 rotationEulers;
+            slider.sliderAngle = -36f;
+            rotationAxis = Vector3.right;
+            rotationEulers = new Vector3(0, 90, 0);
+            slider.transform.rotation = Quaternion.AngleAxis(slider.sliderAngle, rotationAxis);
+            slider.transform.Rotate(rotationEulers);
+        }
     }
 }
