@@ -9,6 +9,14 @@ public class Slider : MonoBehaviour
     public bool isFacingZ = false;
     public bool canBeMove = true;
 
+    void Start() 
+    {
+        //Debug.Log(transform.rotation.y);
+        //Debug.Log(transform.rotation);
+        //transform.Rotate(new Vector3(0, 0, 0));
+        RotateSlider();
+    }
+
     void OnMouseDrag()
     {
         RotateSlider();
