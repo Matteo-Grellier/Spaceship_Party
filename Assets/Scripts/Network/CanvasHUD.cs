@@ -6,15 +6,12 @@ using UnityEngine.SceneManagement;
 public class CanvasHUD : MonoBehaviour
 {
 
-    public GameObject PanelOffline, PanelRoom, PanelGame;
+    public GameObject PanelOffline, PanelGame;
     
     private string actualScene, lastScene;
     public Button buttonHost, buttonServer, buttonClient, buttonStop;
 
     public InputField inputFieldAddress;
-
-    public Text serverText;
-    public Text clientText;
 
     private void Start()
     {
@@ -52,7 +49,6 @@ public class CanvasHUD : MonoBehaviour
     {
         PanelOffline.SetActive(true);
         PanelGame.SetActive(false);
-        PanelRoom.SetActive(false);
 
         buttonHost.onClick.AddListener(ButtonHost);
         buttonServer.onClick.AddListener(ButtonServer);
@@ -62,11 +58,9 @@ public class CanvasHUD : MonoBehaviour
     }
     public void GameScene() 
     {
+        Destroy(GameObject.Find("Background"));
         PanelOffline.SetActive(false);
         PanelGame.SetActive(true);
-        PanelRoom.SetActive(false);
-        serverText.text = "Server: active. Transport: " + Transport.active;
-        clientText.text = "Client: address=" + NetworkManager.singleton.networkAddress;
         buttonStop.onClick.AddListener(ButtonStop);
     }
 
@@ -74,7 +68,6 @@ public class CanvasHUD : MonoBehaviour
     {
       PanelOffline.SetActive(false);
       PanelGame.SetActive(false);
-      PanelRoom.SetActive(true);
     }
 
     // Invoked when the value of the text field changes.
@@ -118,7 +111,7 @@ public class CanvasHUD : MonoBehaviour
         {
             NetworkManager.singleton.StopServer();
         }
-
+        Destroy(gameObject);
         SetupCanvas();
     }
 
