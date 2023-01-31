@@ -28,17 +28,7 @@ public class Spaceship : NetworkBehaviour
       if (isLocalPlayer){
         
         turnRotation = rudder.GetValue();
-        turnAngle = 0;
-        if (turnRotation > oldAngleValue)
-        {
-            turnAngle = 15;
-        } else if (turnRotation < oldAngleValue)
-        {
-            turnAngle = -15;
-        }else
-        {
-            turnAngle = 0;
-        }
+
         MovePlayer(slider.GetValue());
         oldAccelerationValue = slider.GetValue();
         oldAngleValue = turnRotation;
@@ -51,8 +41,8 @@ public class Spaceship : NetworkBehaviour
     private void MovePlayer(float moveSpeed)
     {
         // moveSpeed -= oldAccelerationValue;
-        rb.AddRelativeForce(0f, 0f, multiplierSpeed * moveSpeed, ForceMode.Force);
-        Quaternion desiredRotation = Quaternion.Euler(0f, turnRotation, turnAngle);
+        rb.AddRelativeForce(0f, multiplierSpeed * moveSpeed, 0f, ForceMode.Force);
+        Quaternion desiredRotation = Quaternion.Euler(90f, turnRotation, turnAngle);
         transform.rotation = Quaternion.Lerp(transform.rotation, desiredRotation, smoothSpeed);
     }
 }
