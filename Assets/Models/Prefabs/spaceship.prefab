@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8713366729237379558}
   - component: {fileID: 8075281818338785603}
   - component: {fileID: 6836984893864811749}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -64,7 +64,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 127
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 55e1e1d9c896abd47b9e95242eb944a1, type: 2}
   m_TargetDisplay: 0
@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 7286751538926991951}
   - component: {fileID: 6282499574543099612}
   - component: {fileID: 6030331805345483555}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: spaceship
   m_TagString: Untagged
   m_Icon: {fileID: 0}

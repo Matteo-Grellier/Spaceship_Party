@@ -7,7 +7,7 @@ public class Slider : MonoBehaviour
     public float sliderAngle = -45f;
 
     public bool isFacingZ = false;
-    public bool canBeMove = true;
+    public bool canBeMove = true; 
 
     void Start() 
     {
