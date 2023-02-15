@@ -3,27 +3,34 @@ using UnityEngine;
 public class SphereTrigger : MonoBehaviour
 {
     private Rigidbody rb;
+    private Vector3 direction;
+    Vector3 posPlayer;
+    Vector3 posPlanet;
     private bool isSun = false;
     private bool isPlanet = false;
-    private float vx = 1f;
-    private float vz = 1f;
-    
-    private void FixedUpdate()
+    private bool isAttract = false;
+
+
+    public void Update()
     {
-        rb.AddRelativeForce(vx, 0f, vz, ForceMode.Force);
+        if (isAttract)
+        {
+            rb.AddForce(-direction);
+        }
     }
 
     // Exécuter lorsque l'objet entre dans la zone de détection
-    public void OnTriggerEnter(Collider other)
+    public void OnTriggerStay(Collider other)
     {
         if (other.gameObject.name == "player")
         {
-            other.GetComponent<Spaceship>().isInEffectZone = true;
-
+            isAttract = true;
+            
             rb = other.GetComponent<Rigidbody>();
-            vx *= -8f;
-            vz *= -8f;
-            rb.AddRelativeForce(vx, 0f, vz, ForceMode.Force);
+            posPlayer = other.transform.position;
+            posPlanet = transform.position;
+            direction =  posPlanet + posPlayer;
+            rb.AddForce(-direction);
 
             if (isSun)
             {
@@ -41,12 +48,7 @@ public class SphereTrigger : MonoBehaviour
     {
         if (other.gameObject.name == "player")
         {
-            other.GetComponent<Spaceship>().isInEffectZone = false;
-
-            rb = other.GetComponent<Rigidbody>();
-            vx *= 0f;
-            vz *= 0f;
-            rb.AddRelativeForce(0f, 0f, 0f, ForceMode.Force);
+            isAttract = false;
 
             if (isSun)
             {
