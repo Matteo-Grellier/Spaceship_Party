@@ -4,7 +4,6 @@ public class Slider : MonoBehaviour
 {
     public float smoothSpeed = 500f;
     public float sliderAngle = 0f;
-    public bool isFacingZ = false;
     public bool canBeMove = true;
 
     void OnMouseDrag() {
@@ -20,16 +19,8 @@ public class Slider : MonoBehaviour
             Vector3 rotationAxis;
             Vector3 rotationEulers;
 
-            if (isFacingZ)
-            {
-                rotationAxis = Vector3.right;
-                rotationEulers = new Vector3(0, 90, 0);
-            } 
-            else
-            {
-                rotationAxis = Vector3.forward;
-                rotationEulers = new Vector3(0, 0, 0);
-            }
+            rotationAxis = Vector3.right;
+            rotationEulers = new Vector3(0, 90, 0);
 
             transform.rotation = Quaternion.AngleAxis(sliderAngle, rotationAxis); // turn around x axis
             transform.Rotate(rotationEulers);
