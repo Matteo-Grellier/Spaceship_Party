@@ -1,10 +1,11 @@
 using UnityEngine;
+using Mirror;
 
-public class Spaceship : MonoBehaviour
+public class Spaceship : NetworkBehaviour
 {
     private Rigidbody rb;
-    public Slider slider;
-    public Rudder rudder;
+    private Rudder rudder;
+    private Slider slider;
     public float multiplierSpeed;
     public float smoothSpeed = 0.125f;
     private float turnRotation;
@@ -12,8 +13,10 @@ public class Spaceship : MonoBehaviour
     private float oldAccelerationValue;
     private float oldAngleValue;
 
-    private void Start()
+    private void Awake()
     {
+        slider = GameObject.Find("poignee2").GetComponent<Slider>();
+        rudder = GameObject.Find("gouvernail").GetComponent<Rudder>();
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         turnRotation = transform.eulerAngles.y;
@@ -22,25 +25,24 @@ public class Spaceship : MonoBehaviour
 
     private void FixedUpdate()
     {
+      if (isLocalPlayer){
+        
         turnRotation = rudder.GetValue();
-        turnAngle = 0;
-        if (turnRotation > oldAngleValue)
-        {
-            turnAngle = 15;
-        } else
-        {
-            turnAngle = -15;
-        }
+
         MovePlayer(slider.GetValue());
         oldAccelerationValue = slider.GetValue();
         oldAngleValue = turnRotation;
+      }
+      else
+      {
+        transform.Find("Camera").gameObject.SetActive(false);
+      }
     }
-    
     private void MovePlayer(float moveSpeed)
     {
         // moveSpeed -= oldAccelerationValue;
-        rb.AddRelativeForce(0f, 0f, multiplierSpeed * moveSpeed, ForceMode.Force);
-        Quaternion desiredRotation = Quaternion.Euler(0f, turnRotation, turnAngle);
+        rb.AddRelativeForce(0f, multiplierSpeed * moveSpeed, 0f, ForceMode.Force);
+        Quaternion desiredRotation = Quaternion.Euler(90f, turnRotation, turnAngle);
         transform.rotation = Quaternion.Lerp(transform.rotation, desiredRotation, smoothSpeed);
     }
 }

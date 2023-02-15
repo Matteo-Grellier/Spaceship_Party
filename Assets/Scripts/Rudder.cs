@@ -13,10 +13,6 @@ public class Rudder : MonoBehaviour
         clickPosition = Input.mousePosition.x;
     }
 
-    private void Update() {
-        Debug.Log(sliderAngle);
-    }
-
     void OnMouseDrag()
     {
         sliderAngle += (Input.mousePosition.x - clickPosition) * rotationMultiplier; 
