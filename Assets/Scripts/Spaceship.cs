@@ -5,7 +5,7 @@ public class Spaceship : NetworkBehaviour
 {
     private Rigidbody rb;
     private Rudder rudder;
-    private Slider slider;
+    //private Slider slider;
     public float multiplierSpeed;
     public float smoothSpeed = 0.125f;
     private float turnRotation;
@@ -15,7 +15,7 @@ public class Spaceship : NetworkBehaviour
 
     private void Awake()
     {
-        slider = GameObject.Find("poignee2").GetComponent<Slider>();
+        //slider = GameObject.Find("poignee2").GetComponent<Slider>();
         rudder = GameObject.Find("gouvernail").GetComponent<Rudder>();
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
@@ -36,8 +36,8 @@ public class Spaceship : NetworkBehaviour
         {
             turnAngle = -15;
         }
-        MovePlayer(slider.GetSliderPercent());
-        oldAccelerationValue = slider.GetSliderPercent();
+        //MovePlayer(slider.GetSliderPercent());
+        //oldAccelerationValue = slider.GetSliderPercent();
         oldAngleValue = turnRotation;
       }
       else
