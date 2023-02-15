@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6836984893864811749}
   m_Layer: 3
   m_Name: Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -66,7 +66,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 127
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 8400000, guid: 55e1e1d9c896abd47b9e95242eb944a1, type: 2}
+  m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
