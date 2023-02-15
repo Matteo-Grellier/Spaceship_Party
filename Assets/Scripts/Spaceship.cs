@@ -40,8 +40,9 @@ public class Spaceship : MonoBehaviour //NetworkBehaviour
 
     private void MovePlayer(float average, float vR, float vL) {
         rb.AddRelativeForce(0f, 0f, multiplierSpeed * average, ForceMode.Force);
-        //float diffSliders = (vR - vL) * 100;
-        Quaternion desiredRotation = Quaternion.Euler(0f, 0f, 0f);
-        transform.rotation = Quaternion.Lerp(transform.rotation, desiredRotation, smoothSpeed);
+        float diffSliders = (vL - vR);
+        transform.Rotate(0f, diffSliders, 0f);
+        //Quaternion desiredRotation = Quaternion.Euler(0f, diffSliders, 0f);
+        //transform.rotation = Quaternion.Lerp(transform.rotation, desiredRotation, smoothSpeed);
     }
 }

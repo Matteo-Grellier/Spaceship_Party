@@ -701,7 +701,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 662961e21ec76c341bb39028ea88e680, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  multiplierSpeed: 50
+  multiplierSpeed: 25
   smoothSpeed: 0.125
   _sliderR: {fileID: 968860019}
   _sliderL: {fileID: 1636483423}
