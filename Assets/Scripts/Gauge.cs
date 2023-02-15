@@ -30,7 +30,7 @@ public class Gauge : MonoBehaviour
 
     private void FuelConsumer()
     {
-        float sliderPower = slider.GetValue();
+        float sliderPower = slider.GetSliderPercent();
         if(fuel > 0.0){
             slider.canBeMove = true;
             fuel = fuel - (sliderPower * fuelMultiplier);

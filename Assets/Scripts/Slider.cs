@@ -2,23 +2,12 @@ using UnityEngine;
 
 public class Slider : MonoBehaviour
 {
-
     public float smoothSpeed = 500f;
-    public float sliderAngle = -45f;
-
+    public float sliderAngle = 0f;
     public bool isFacingZ = false;
     public bool canBeMove = true;
 
-    void Start() 
-    {
-        //Debug.Log(transform.rotation.y);
-        //Debug.Log(transform.rotation);
-        //transform.Rotate(new Vector3(0, 0, 0));
-        RotateSlider();
-    }
-
-    void OnMouseDrag()
-    {
+    void OnMouseDrag() {
         RotateSlider();
     }
 
@@ -26,7 +15,6 @@ public class Slider : MonoBehaviour
     {
         if(canBeMove){
             sliderAngle += Input.GetAxis("Mouse Y") * smoothSpeed * Time.deltaTime;
-            //Debug.Log(Input.GetAxis("Mouse Y") + " | " +  smoothSpeed + " | " + -Time.deltaTime);
             sliderAngle = Mathf.Clamp(sliderAngle, -45, 30);
 
             Vector3 rotationAxis;
@@ -47,8 +35,7 @@ public class Slider : MonoBehaviour
             transform.Rotate(rotationEulers);
         }
     }
-    public float GetValue() {
-        float sliderAngleValue = (sliderAngle - (-45)) * (75 - 0) / (30 - (-45)) + 0;
-        return sliderAngleValue/75;
+    public float GetSliderPercent() {
+        return ((sliderAngle-(-45))*(75-0)/(30-(-45))+0)/75;
     }
 }

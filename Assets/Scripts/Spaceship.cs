@@ -31,8 +31,8 @@ public class Spaceship : MonoBehaviour
         {
             turnAngle = -15;
         }
-        MovePlayer(slider.GetValue());
-        oldAccelerationValue = slider.GetValue();
+        MovePlayer(slider.GetSliderPercent());
+        oldAccelerationValue = slider.GetSliderPercent();
         oldAngleValue = turnRotation;
     }
     
