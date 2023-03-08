@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Gauge : MonoBehaviour
 {
-    public Slider slider;
+    //public Slider slider;
     public float fuel = 1f;
     private float gaugeHeight;
     public GameObject cylinder;
@@ -30,20 +30,20 @@ public class Gauge : MonoBehaviour
 
     private void FuelConsumer()
     {
-        float sliderPower = slider.GetValue();
+        //float sliderPower = slider.GetSliderPercent();
         if(fuel > 0.0){
-            slider.canBeMove = true;
-            fuel = fuel - (sliderPower * fuelMultiplier);
+            //slider.canBeMove = true;
+            //fuel = fuel - (sliderPower * fuelMultiplier);
         } else {
             fuel = 0f;
-            slider.canBeMove = false;
+            //slider.canBeMove = false;
             Vector3 rotationAxis;
             Vector3 rotationEulers;
-            slider.sliderAngle = -36f;
+            //slider.sliderAngle = -36f;
             rotationAxis = Vector3.right;
             rotationEulers = new Vector3(0, 90, 0);
-            slider.transform.rotation = Quaternion.AngleAxis(slider.sliderAngle, rotationAxis);
-            slider.transform.Rotate(rotationEulers);
+            //slider.transform.rotation = Quaternion.AngleAxis(slider.sliderAngle, rotationAxis);
+            //slider.transform.Rotate(rotationEulers);
         }
     }
 }
