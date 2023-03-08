@@ -14,6 +14,14 @@ public class Spaceship : MonoBehaviour //NetworkBehaviour
     float average = 0f;
 
     private void Awake() {
+        _sliderR = GameObject.Find("SliderR").GetComponent<Slider>();
+        _sliderL = GameObject.Find("SliderL").GetComponent<Slider>();
+
+        if(_sliderR == null || _sliderL == null)
+        {
+            Debug.LogError("one of the sliders wasn't found");
+        }
+
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
 
