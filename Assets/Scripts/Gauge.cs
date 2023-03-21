@@ -14,10 +14,8 @@ public class Gauge : MonoBehaviour
     void Start()
     {
         saveSize = cylinder.transform.localScale;
-
         gaugeHeight = saveSize.y;
         cylinder.transform.localScale = new Vector3(saveSize.x, gaugeHeight * fuel, saveSize.z);
-
     }
     // Update is called once per frame
     void Update()
