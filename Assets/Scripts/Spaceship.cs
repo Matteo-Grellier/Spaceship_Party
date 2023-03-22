@@ -1,77 +1,53 @@
 using UnityEngine;
+//using Mirror;
+using UnityEngine.UI;
 
-public class Spaceship : MonoBehaviour
+public class Spaceship : MonoBehaviour //NetworkBehaviour
 {
     private Rigidbody rb;
-    public float maxSpeed;
+    public float multiplierSpeed;
     public float smoothSpeed = 0.125f;
-    private int moveSpeed = 0;
-    private float turnRotation;
-    private float turnAngle;
+    private Slider _sliderR;
+    private Slider _sliderL;
+    float vR = 0f;
+    float vL = 0f;
+    float average = 0f;
+    public bool canRecharge = false;
+    public bool canBoost = false;
 
-    private void Start()
-    {
+    private void Awake() {
+        
+        _sliderL = GameObject.Find("SliderL").GetComponent<Slider>();
+        _sliderR = GameObject.Find("SliderR").GetComponent<Slider>();
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
-        turnRotation = transform.eulerAngles.y;
-        turnAngle = transform.eulerAngles.x;
+
+        _sliderR.onValueChanged.AddListener((v) => {
+            vR = v;
+            average = AverageSliders(vR, vL);
+        });
+        _sliderL.onValueChanged.AddListener((v) => {
+            vL = v;
+            average = AverageSliders(vR, vL);
+        });
     }
 
-    private void FixedUpdate()
-    {
-        int changeTurnRotationStatus = 0;
-        int changeSpeedStatus = 0;
-        turnAngle = 0;
-        if (Input.GetKey("w"))
-        {
-            changeSpeedStatus = 1;
-        }
-        if (Input.GetKey("s"))
-        {
-            changeSpeedStatus = -1;
-        }
-        if (Input.GetKey("a"))
-        {
-            changeTurnRotationStatus = -1;
-            turnAngle = 15;
-        }
-        if (Input.GetKey("d"))
-        {
-            changeTurnRotationStatus = 1;
-            turnAngle = -15;
-        }
-        turnRotation += changeTurnRotationStatus;
-        ChangeSpeed(changeSpeedStatus);
-        MaxSpeedControl(moveSpeed);
-        MovePlayer(moveSpeed);
+    private void FixedUpdate() {
+      /*if (!isLocalPlayer) {
+        transform.Find("Camera").gameObject.SetActive(false);
+      }*/
+      MovePlayer(average, vR, vL);
     }
 
-    private void ChangeSpeed(int changeSpeedStatus)
-    {
-        if ((moveSpeed + changeSpeedStatus) > 10 || (moveSpeed + changeSpeedStatus) < 0)
-        {
-            Debug.Log("Vous avez atteint les limites des r�acteurs !");
-        } else
-        {
-            moveSpeed += changeSpeedStatus;
-        }
+    private float AverageSliders(float vR, float vL) {
+        return (vR + vL) / 2;
     }
 
-    private void MovePlayer(int moveSpeed)
-    {
-        rb.AddRelativeForce(0f, 0f, maxSpeed * moveSpeed, ForceMode.Force);
-        Quaternion desiredRotation = Quaternion.Euler(0f, turnRotation, turnAngle);
-        transform.rotation = Quaternion.Lerp(transform.rotation, desiredRotation, smoothSpeed);
-    }
-
-    private void MaxSpeedControl(int moveSpeed)
-    {
-        Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-
-        if (flatVel.magnitude > moveSpeed)
-        {
-            Vector3 limitedVel = flatVel.normalized * moveSpeed;
-            rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
-        }
+    private void MovePlayer(float average, float vR, float vL) {
+        rb.AddRelativeForce(0f, 0f, multiplierSpeed * average, ForceMode.Force);
+        float diffSliders = (vL - vR);
+        transform.Rotate(0f, diffSliders, 0f);
+        //Quaternion desiredRotation = Quaternion.Euler(0f, diffSliders, 0f);
+        //transform.rotation = Quaternion.Lerp(transform.rotation, desiredRotation, smoothSpeed);
     }
 }

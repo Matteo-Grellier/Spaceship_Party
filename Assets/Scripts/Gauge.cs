@@ -1,26 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class Gauge : MonoBehaviour
 {
+    public SliderAverage sliders;
     public float fuel = 1f;
-    private float gaugeHeight;
-    public GameObject cylinder;
-    private Vector3 saveSize;
-    private Vector3 savePos;
+    public float fuelMultiplier = 0.001f;
+    public Slider GaugeUI;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        saveSize = cylinder.transform.localScale;
-        gaugeHeight = saveSize.y;
-        cylinder.transform.localScale = new Vector3(saveSize.x, gaugeHeight * fuel, saveSize.z);
+    private void FuelConsumer() {
+        float slidersPower = sliders.getAverage();
+        if (fuel > 0.0) {
+            sliders.setInteractable(true);
+            fuel = fuel - (slidersPower * fuelMultiplier);
+        } else {
+            fuel = 0f;
+            sliders.setInteractable(false);
+            sliders.setValue(0f);
+        }
     }
-    // Update is called once per frame
-    void Update()
-    {
-        cylinder.transform.localScale =  Vector3.Lerp(saveSize, new Vector3(saveSize.x, gaugeHeight * fuel, saveSize.z), 0.04f);
-        saveSize = cylinder.transform.localScale;
+
+    void FixedUpdate() {
+        FuelConsumer();
+        GaugeUI.value = fuel;
     }
 }
