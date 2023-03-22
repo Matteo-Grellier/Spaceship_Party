@@ -12,6 +12,8 @@ public class Spaceship : MonoBehaviour //NetworkBehaviour
     float vR = 0f;
     float vL = 0f;
     float average = 0f;
+    public bool canRecharge = false;
+    public bool canBoost = false;
 
     private void Awake() {
         _sliderR = GameObject.Find("SliderR").GetComponent<Slider>();
