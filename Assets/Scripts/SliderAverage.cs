@@ -29,16 +29,24 @@ public class SliderAverage : MonoBehaviour
         return (vR + vL) / 2;
     }
 
-    public float getAverage() {
+    public float GetAverage() {
         return average;
     }
 
-    public void setInteractable(bool isInterac) {
+    public Slider GetLeftSlider() {
+        return _sliderL;
+    }
+
+    public Slider GetRightSlider() {
+        return _sliderR;
+    }
+
+    public void SetInteractable(bool isInterac) {
         _sliderR.interactable = isInterac;
         _sliderL.interactable = isInterac;
     }
 
-    public void setValue(float value) {
+    public void SetValue(float value) {
         _sliderR.value = value;
         _sliderL.value = value;
     }
