@@ -7,8 +7,8 @@ public class Spaceship : MonoBehaviour //NetworkBehaviour
     private Rigidbody rb;
     public float multiplierSpeed;
     public float smoothSpeed = 0.125f;
-    [SerializeField] private Slider _sliderR;
-    [SerializeField] private Slider _sliderL;
+    private Slider _sliderR;
+    private Slider _sliderL;
     float vR = 0f;
     float vL = 0f;
     float average = 0f;
@@ -16,14 +16,9 @@ public class Spaceship : MonoBehaviour //NetworkBehaviour
     public bool canBoost = false;
 
     private void Awake() {
-        _sliderR = GameObject.Find("SliderR").GetComponent<Slider>();
+        
         _sliderL = GameObject.Find("SliderL").GetComponent<Slider>();
-
-        if(_sliderR == null || _sliderL == null)
-        {
-            Debug.LogError("one of the sliders wasn't found");
-        }
-
+        _sliderR = GameObject.Find("SliderR").GetComponent<Slider>();
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
 
