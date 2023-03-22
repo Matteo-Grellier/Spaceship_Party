@@ -17,6 +17,7 @@ public class Gauge : MonoBehaviour
         } else {
             fuel = 0f;
             sliders.setInteractable(false);
+            sliders.setValue(0f);
         }
     }
 

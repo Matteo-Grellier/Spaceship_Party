@@ -37,4 +37,9 @@ public class SliderAverage : MonoBehaviour
         _sliderR.interactable = isInterac;
         _sliderL.interactable = isInterac;
     }
+
+    public void setValue(float value) {
+        _sliderR.value = value;
+        _sliderL.value = value;
+    }
 }
