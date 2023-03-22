@@ -2,20 +2,33 @@ using UnityEngine;
 
 public class Rudder : MonoBehaviour
 {
-    public float smoothSpeed = 0.125f;
+    [SerializeField] private float smoothSpeed = 0.125f;
+    [SerializeField] private float rotationMultiplier = 0.2f; 
     private float sliderAngle = 0f;
-    private float mZCoord;
-    private float mXCoord;
-    private void RotateSlider() {
-        // Quaternion desiredRotation = Quaternion.Euler(sliderAngle,transform.eulerAngles.y, transform.eulerAngles.x);
-        Quaternion desiredRotation = Quaternion.Euler(transform.rotation.x, sliderAngle, transform.rotation.z);
 
-        transform.rotation = Quaternion.Lerp(transform.rotation, desiredRotation, smoothSpeed);
+    private float clickPosition;
+
+    private void OnMouseDown() 
+    {
+        clickPosition = Input.mousePosition.x;
     }
+
     void OnMouseDrag()
     {
-        sliderAngle = Input.mousePosition.x;
+        sliderAngle += (Input.mousePosition.x - clickPosition) * rotationMultiplier; 
+        clickPosition = Input.mousePosition.x;
+
         RotateSlider();
     }
 
+    private void RotateSlider()
+    {
+        Quaternion desiredRotation = Quaternion.Euler(0, sliderAngle, 0);
+        transform.rotation = Quaternion.Lerp(gameObject.transform.rotation, desiredRotation, smoothSpeed);
+    }
+
+    public float GetValue() 
+    {
+        return sliderAngle;
+    }
 }

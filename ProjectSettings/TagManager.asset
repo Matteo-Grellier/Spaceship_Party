@@ -3,17 +3,16 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - spaceship
+  tags: [spaceship]
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - Curseur
-  - 
+  - Console
   - 
   - 
   - 

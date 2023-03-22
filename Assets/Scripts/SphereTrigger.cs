@@ -22,7 +22,7 @@ public class SphereTrigger : MonoBehaviour
     // Exécuter lorsque l'objet entre dans la zone de détection
     public void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.name == "player")
+        if (other.gameObject.tag == "spaceship")
         {
             isAttract = true;
             
@@ -46,7 +46,7 @@ public class SphereTrigger : MonoBehaviour
     // Exécuter lorsque l'objet sort de la zone de détection
     public void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.name == "player")
+        if (other.gameObject.tag == "spaceship")
         {
             isAttract = false;
 
