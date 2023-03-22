@@ -29,7 +29,6 @@ public class radar : MonoBehaviour
         img.transform.position = other.transform.position;
         if (img.transform.position.y>gameObject.transform.position.y){
             img.transform.Rotate(new Vector3(transform.rotation.x,transform.rotation.y,180f));
-
         }
         img.enabled  = true;
     }
