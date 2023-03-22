@@ -13,7 +13,8 @@ public class GiftEntity : MonoBehaviour
     }
 
     void OnTriggerEnter(Collider collider) {
-        if (collider.gameObject.name == "spaceship") {
+        if (collider.gameObject.tag == "Player") 
+        {
             button?.SetGift(giftsList[Random.Range(0, 4)]);
             Destroy(gameObject);
         }
