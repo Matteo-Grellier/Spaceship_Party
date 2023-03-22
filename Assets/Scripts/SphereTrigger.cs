@@ -4,10 +4,8 @@ public class SphereTrigger : MonoBehaviour
 {
     private Rigidbody rb;
     private Vector3 direction;
-    Vector3 posPlayer;
-    Vector3 posPlanet;
-    private bool isSun = false;
-    private bool isPlanet = false;
+    public bool isSun = false;
+    public bool isBoostZone = true;
     private bool isAttract = false;
 
 
@@ -15,28 +13,31 @@ public class SphereTrigger : MonoBehaviour
     {
         if (isAttract)
         {
-            rb.AddForce(-direction);
+            rb.AddForce(direction);
         }
     }
 
     // Exécuter lorsque l'objet entre dans la zone de détection
     public void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.tag == "spaceship")
+        Vector3 posPlanet;
+        Vector3 posPlayer;
+
+        if (other.gameObject.CompareTag("spaceship"))
         {
             isAttract = true;
             
             rb = other.GetComponent<Rigidbody>();
             posPlayer = other.transform.position;
             posPlanet = transform.position;
-            direction =  posPlanet + posPlayer;
-            rb.AddForce(-direction);
+
+            direction = posPlanet - posPlayer;
 
             if (isSun)
             {
                 other.GetComponent<Spaceship>().canRecharge = true;
             }
-            if (isPlanet)
+            if (isBoostZone)
             {
                 other.GetComponent<Spaceship>().canBoost = true;
             }
@@ -46,7 +47,7 @@ public class SphereTrigger : MonoBehaviour
     // Exécuter lorsque l'objet sort de la zone de détection
     public void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "spaceship")
+        if (other.gameObject.CompareTag("spaceship"))
         {
             isAttract = false;
 
@@ -54,7 +55,7 @@ public class SphereTrigger : MonoBehaviour
             {
                 other.GetComponent<Spaceship>().canRecharge = false;
             }
-            if (isPlanet)
+            if (isBoostZone)
             {
                 other.GetComponent<Spaceship>().canBoost = false;
             }
