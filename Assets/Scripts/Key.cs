@@ -8,25 +8,30 @@ public class Key : MonoBehaviour
     public int startingAngle = -45;
     private bool isStart = false;
 
+
+
+    private Vector3 initPos;
+    private Vector3 dirShake;
+    public float amplitude; // the amount it moves
+    public float frequency; // the period of the earthquake
+
+
+
+    // STOP //
     private void RotateKeyLeft(){
         Quaternion desiredRotation = Quaternion.Euler(0f, 0f, 0f);
         transform.rotation = Quaternion.Lerp(transform.rotation, desiredRotation, smoothSpeed);
     }
-    private void RotateKeyRight()
-    {
+    // START //
+    private void RotateKeyRight(){
         Quaternion desiredRotation = Quaternion.Euler(0f, 0f, startingAngle);
         transform.rotation = Quaternion.Lerp(transform.rotation, desiredRotation, smoothSpeed);
-        Vibrant(true);
+        transform.position = initPos + dirShake*Mathf.Sin(frequency * Time.fixedDeltaTime)*amplitude;
     }
 
-    private void Vibrant(bool isVibrant){
-        if(true){
-            for (int i = 0; i < 100; i++)
-            {
-                transform.position += transform.forward*100;
-                transform.position += transform.forward*-100;
-            }
-        }
+    void Start(){
+        dirShake = transform.forward;
+        initPos = transform.position; // store this to avoid floating point error drift
     }
 
     public void OnEventClick(){
@@ -34,9 +39,9 @@ public class Key : MonoBehaviour
     }
 
     private void FixedUpdate(){
-
         if (isStart) {
             RotateKeyRight();
+            Debug.Log(Time.fixedDeltaTime);
         } else {
             RotateKeyLeft();
         }
