@@ -4,11 +4,30 @@ using UnityEngine;
 
 public class Gift : MonoBehaviour
 {
-    public string name = "Objet";
+    public string name;
     public bool isUsed = false;
 
     public void Use() {
+        switch (name)
+        {
+            case "Rocket":
+                Debug.Log(name + " launched!");
+                break;
+            case "IEM":
+                Debug.Log(name + " exploded!");
+                break;
+            case "Refuel":
+                Debug.Log(" Your batteries is now full!");
+                break;
+            case "Boost":
+                Debug.Log(" Speed up!");
+                break;
+            case "Shield":
+                Debug.Log(" You are now protect with a shield!");
+                break;
+            default:
+                break;
+        }
         isUsed = true;
-        Debug.Log("VOUS VENEZ D'UTILISER " + name + "!");
     }
 }

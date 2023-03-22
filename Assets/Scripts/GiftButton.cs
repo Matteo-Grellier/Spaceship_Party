@@ -8,13 +8,14 @@ public class GiftButton : MonoBehaviour {
 
     public Button _button;
     public TMP_Text buttonText;
-    public Gift gift;
+    private Gift gift;
     private bool haveGift;
     // Start is called before the first frame update
     void Start()
     {
         buttonText = _button.GetComponentInChildren<TMP_Text>(true);
         _button.interactable = false;
+        _button.onClick.AddListener(UseGift);
     }
 
     // Update is called once per frame
@@ -29,14 +30,15 @@ public class GiftButton : MonoBehaviour {
         }
     }
 
-    public void IsClick() {
+    private void UseGift() {
         gift.Use();
         gift = null;
         haveGift = false;
     }
 
-    public void SetGift(Gift newGift) {
-        gift = newGift;
+    public void SetGift(string giftName) {
+        gift = gameObject.AddComponent(typeof(Gift)) as Gift;
+        gift.name = giftName;
         haveGift = true;
     }
 }
