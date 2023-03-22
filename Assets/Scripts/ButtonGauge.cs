@@ -8,6 +8,6 @@ public class ButtonGauge : MonoBehaviour
     
     private void OnMouseDown()
     {
-        gauge.fuel = 1f;
+        //gauge.fuel = 1f;
     }
 }

@@ -1,48 +1,53 @@
 using UnityEngine;
-using Mirror;
+//using Mirror;
+using UnityEngine.UI;
 
-public class Spaceship : NetworkBehaviour
+public class Spaceship : MonoBehaviour //NetworkBehaviour
 {
     private Rigidbody rb;
-    private Rudder rudder;
-    private Slider slider;
     public float multiplierSpeed;
     public float smoothSpeed = 0.125f;
-    private float turnRotation;
-    private float turnAngle;
-    private float oldAccelerationValue;
-    private float oldAngleValue;
+    private Slider _sliderR;
+    private Slider _sliderL;
+    float vR = 0f;
+    float vL = 0f;
+    float average = 0f;
+    public bool canRecharge = false;
+    public bool canBoost = false;
 
-    private void Awake()
-    {
-        slider = GameObject.Find("poignee2").GetComponent<Slider>();
-        rudder = GameObject.Find("gouvernail").GetComponent<Rudder>();
+    private void Awake() {
+        
+        _sliderL = GameObject.Find("SliderL").GetComponent<Slider>();
+        _sliderR = GameObject.Find("SliderR").GetComponent<Slider>();
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
-        turnRotation = transform.eulerAngles.y;
-        turnAngle = transform.eulerAngles.x;
+
+        _sliderR.onValueChanged.AddListener((v) => {
+            vR = v;
+            average = AverageSliders(vR, vL);
+        });
+        _sliderL.onValueChanged.AddListener((v) => {
+            vL = v;
+            average = AverageSliders(vR, vL);
+        });
     }
 
-    private void FixedUpdate()
-    {
-      if (isLocalPlayer){
-        
-        turnRotation = rudder.GetValue();
-
-        MovePlayer(slider.GetValue());
-        oldAccelerationValue = slider.GetValue();
-        oldAngleValue = turnRotation;
-      }
-      else
-      {
+    private void FixedUpdate() {
+      /*if (!isLocalPlayer) {
         transform.Find("Camera").gameObject.SetActive(false);
-      }
+      }*/
+      MovePlayer(average, vR, vL);
     }
-    private void MovePlayer(float moveSpeed)
-    {
-        // moveSpeed -= oldAccelerationValue;
-        rb.AddRelativeForce(0f, multiplierSpeed * moveSpeed, 0f, ForceMode.Force);
-        Quaternion desiredRotation = Quaternion.Euler(90f, turnRotation, turnAngle);
-        transform.rotation = Quaternion.Lerp(transform.rotation, desiredRotation, smoothSpeed);
+
+    private float AverageSliders(float vR, float vL) {
+        return (vR + vL) / 2;
+    }
+
+    private void MovePlayer(float average, float vR, float vL) {
+        rb.AddRelativeForce(0f, 0f, multiplierSpeed * average, ForceMode.Force);
+        float diffSliders = (vL - vR);
+        transform.Rotate(0f, diffSliders, 0f);
+        //Quaternion desiredRotation = Quaternion.Euler(0f, diffSliders, 0f);
+        //transform.rotation = Quaternion.Lerp(transform.rotation, desiredRotation, smoothSpeed);
     }
 }
