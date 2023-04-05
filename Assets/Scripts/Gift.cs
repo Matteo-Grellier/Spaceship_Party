@@ -6,8 +6,16 @@ public class Gift : MonoBehaviour
 {
     public string name;
     public bool isUsed = false;
+    private Spaceship spaceship;
 
-    public void Use() {
+    private int boostDelay = 3;
+    private int shieldDelay = 20;
+
+    public void Use() 
+    {
+
+        spaceship = GameObject.FindWithTag("spaceship").GetComponent<Spaceship>();
+
         switch (name)
         {
             case "Rocket":
@@ -17,17 +25,31 @@ public class Gift : MonoBehaviour
                 Debug.Log(name + " exploded!");
                 break;
             case "Refuel":
-                Debug.Log(" Your batteries is now full!");
+                spaceship.FullyRechargeGauge();
                 break;
             case "Boost":
-                Debug.Log(" Speed up!");
+                StartCoroutine(BoostForAGivenTime(boostDelay));
                 break;
             case "Shield":
-                Debug.Log(" You are now protect with a shield!");
+                StartCoroutine(ShieldIsActivatedForAGivenTime(shieldDelay));
                 break;
             default:
                 break;
         }
         isUsed = true;
+    }
+
+    private IEnumerator BoostForAGivenTime(int seconds)
+    {
+        spaceship.canBoost = true;
+        yield return new WaitForSeconds(seconds);
+        spaceship.canBoost = false;
+    }
+
+    private IEnumerator ShieldIsActivatedForAGivenTime(int seconds)
+    {
+        spaceship.shieldActivated = true;
+        yield return new WaitForSeconds(seconds);
+        spaceship.shieldActivated = false;
     }
 }
