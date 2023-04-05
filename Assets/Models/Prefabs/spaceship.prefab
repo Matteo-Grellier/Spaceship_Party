@@ -115,7 +115,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1306837973801804091}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.010016859, y: 0.005, z: 0.01}
@@ -133,7 +133,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   multiplierSpeed: 25
+  boostSpeed: 1
   smoothSpeed: 0.125
+  switches: []
+  fuel: 1
+  fuelMultiplier: 0.001
   canRecharge: 0
   canBoost: 0
   leftReactorBroke: 0
