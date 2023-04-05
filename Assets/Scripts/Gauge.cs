@@ -9,6 +9,6 @@ public class Gauge : MonoBehaviour
     public Slider GaugeUI;
 
     void FixedUpdate() {
-        GaugeUI.value = GameObject.FindWithTag("spaceship").GetComponent<Spaceship>().GetFuelLevel();
+        GaugeUI.value = GameObject.FindWithTag("spaceship")?.GetComponent<Spaceship>().GetFuelLevel();
     }
 }
