@@ -20,7 +20,7 @@ public class Spaceship : MonoBehaviour //NetworkBehaviour
     public bool rightReactorBroke = false;
 
     private void Awake() {
-        
+        gauge = GameObject.Find("Gauge")?.GetComponent<Gauge>();
         _sliderL = GameObject.Find("SliderL")?.GetComponent<Slider>();
         _sliderR = GameObject.Find("SliderR")?.GetComponent<Slider>();
         rb = GetComponent<Rigidbody>();
