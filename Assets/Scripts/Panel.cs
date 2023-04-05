@@ -14,24 +14,28 @@ public class Panel : MonoBehaviour
     [SerializeField] private float sizeALaMano = 280;
 
     private float t = 0.125f;
-    public bool isBreak = true;
-    public GameObject img;
-
+    public bool isBroken = true;
+    public GameObject breakIndicator;
+    public GameObject breakIndicatorKey;
+    public GameObject breakIndicatorGauge;
+    public GameObject breakIndicatorFuseLeft;
+    public GameObject breakIndicatorFuseRight;
+    private bool isWaiting = false;
+    public bool isKey = true;
+    public bool isGauge = true;
+    public bool isFuseLeft = true;
+    public bool isFuseRight = true;
+    
     // Start is called before the first frame update
     void Start() {
         savePos = transform.position;
-        img.SetActive(false);
+        breakIndicator.SetActive(false);
     }
     void FixedUpdate() {
-        //break indicator
-        if (isBreak){
-            img.SetActive(true);
-        } else{
-            img.SetActive(false);
-        }
         if (OnMoov){
             if (!IsUp) {
                 transform.position = Vector3.Lerp(transform.position, new Vector3(savePos.x, savePos.y+sizeALaMano, savePos.z), t);
+                isBroken = false;
             } else {
                 transform.position = Vector3.Lerp(transform.position, new Vector3(savePos.x, savePos.y-sizeALaMano, savePos.z), t);
             }
@@ -51,11 +55,55 @@ public class Panel : MonoBehaviour
                 t = 1f;
             }
         } 
+
+        //break indicator
+        if (isBroken){
+            if (!isWaiting){
+                breakIndicator.SetActive(!breakIndicator.active);
+                isWaiting = true;
+                StartCoroutine(wait());   
+            }
+        } else{
+            breakIndicator.SetActive(false);
+        }
+
+        if (isKey){
+            isBroken = false;
+            breakIndicatorKey.SetActive(true);
+        }
+        if (isGauge)
+            isBroken = false;
+            breakIndicatorGauge.SetActive(true);
+        if (isFuseLeft){
+            isBroken = false;
+            breakIndicatorFuseLeft.SetActive(true);
+        }
+        if (isFuseRight){
+            breakIndicatorFuseRight.SetActive(true);
+            isBroken = false;
+        }
+        if (!isKey) {
+            breakIndicatorKey.SetActive(false);
+        }
+        if(!isGauge) {
+            breakIndicatorGauge.SetActive(false);
+        } 
+        if (!isFuseLeft){
+            breakIndicatorFuseLeft.SetActive(false);
+        }
+        if (!isFuseRight){
+            breakIndicatorFuseRight.SetActive(false);
+        }
     }
     public void Displacement()
     {
         t = 0.125f;
         savePos = transform.position;
         OnMoov = true;
+    }
+    IEnumerator wait()
+    {
+        yield return new WaitForSeconds(1);
+        isWaiting = false;
     }
 }
