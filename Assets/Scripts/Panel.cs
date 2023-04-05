@@ -14,12 +14,21 @@ public class Panel : MonoBehaviour
     [SerializeField] private float sizeALaMano = 280;
 
     private float t = 0.125f;
+    public bool isBreak = true;
+    public GameObject img;
 
     // Start is called before the first frame update
     void Start() {
         savePos = transform.position;
+        img.SetActive(false);
     }
     void FixedUpdate() {
+        //break indicator
+        if (isBreak){
+            img.SetActive(true);
+        } else{
+            img.SetActive(false);
+        }
         if (OnMoov){
             if (!IsUp) {
                 transform.position = Vector3.Lerp(transform.position, new Vector3(savePos.x, savePos.y+sizeALaMano, savePos.z), t);
@@ -44,7 +53,6 @@ public class Panel : MonoBehaviour
         } 
     }
     public void Displacement()
-
     {
         t = 0.125f;
         savePos = transform.position;
