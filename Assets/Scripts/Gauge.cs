@@ -29,11 +29,12 @@ public class Gauge : MonoBehaviour
         }
     }
 
-    void Update() {
-        // DEV KEY:
-        /*if (Input.GetKeyDown("space")) {
-            fuel = 1f;
-        }*/
+    public void RechargeFuel()
+    {
+        fuel += 0.01f;
+    }
+
+    void FixedUpdate() {
         FuelConsumer();
         GaugeUI.value = fuel;
     }
