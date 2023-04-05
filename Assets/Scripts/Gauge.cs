@@ -21,6 +21,11 @@ public class Gauge : MonoBehaviour
         }
     }
 
+    public void RechargeFuel()
+    {
+        fuel += 0.01f;
+    }
+
     void FixedUpdate() {
         FuelConsumer();
         GaugeUI.value = fuel;

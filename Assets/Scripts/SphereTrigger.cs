@@ -37,6 +37,7 @@ public class SphereTrigger : MonoBehaviour
             {
                 other.GetComponent<Spaceship>().canRecharge = true;
             }
+
             if (isBoostZone)
             {
                 other.GetComponent<Spaceship>().canBoost = true;

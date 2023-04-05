@@ -13,12 +13,12 @@ public class SliderAverage : MonoBehaviour
     void Start() {
         float vR = 0f;
         float vL = 0f;
-        _sliderR.onValueChanged.AddListener((v) => {
+        _sliderR?.onValueChanged.AddListener((v) => {
             vR = v;
             average = AverageSliders(vR, vL);
             _slidersAverageText.text = average.ToString("0.00");
         });
-        _sliderL.onValueChanged.AddListener((v) => {
+        _sliderL?.onValueChanged.AddListener((v) => {
             vL = v;
             average = AverageSliders(vR, vL);
             _slidersAverageText.text = average.ToString("0.00");
@@ -34,11 +34,15 @@ public class SliderAverage : MonoBehaviour
     }
 
     public void setInteractable(bool isInterac) {
+        if (!_sliderL || !_sliderR) return;
+
         _sliderR.interactable = isInterac;
         _sliderL.interactable = isInterac;
     }
 
     public void setValue(float value) {
+        if (!_sliderL || !_sliderR) return;
+
         _sliderR.value = value;
         _sliderL.value = value;
     }
