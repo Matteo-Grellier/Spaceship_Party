@@ -13,7 +13,7 @@ public class Gauge : MonoBehaviour
     private void FuelConsumer() {
         float slidersPower = sliders.GetAverage();
         if (fuel > 0.0) {
-            spaceship = GameObject.FindWithTag("Player").GetComponent<Spaceship>();
+            spaceship = GameObject.FindWithTag("spaceship").GetComponent<Spaceship>();
             if (!spaceship.GetLeftReactorBroke() && !spaceship.GetRightReactorBroke()) {
                 sliders.SetInteractable(true);
             } else if (spaceship.GetLeftReactorBroke() && !spaceship.GetRightReactorBroke()) {

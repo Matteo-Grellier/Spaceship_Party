@@ -12,8 +12,8 @@ public class GiftEntity : MonoBehaviour
         button = GameObject.Find("GiftButton").GetComponent<GiftButton>();
     }
 
-    void OnTriggerEnter(Collider collider) {
-        if (collider.gameObject.tag == "Player") 
+    void OnTriggerEnter(Collider other) {
+        if (other is BoxCollider) 
         {
             button?.SetGift(giftsList[Random.Range(0, 4)]);
             Destroy(gameObject);

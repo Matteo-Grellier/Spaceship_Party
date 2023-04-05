@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 1371632652056063471}
   m_Layer: 0
   m_Name: spaceship
-  m_TagString: Player
+  m_TagString: spaceship
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -136,6 +136,8 @@ MonoBehaviour:
   smoothSpeed: 0.125
   canRecharge: 0
   canBoost: 0
+  leftReactorBroke: 0
+  rightReactorBroke: 0
 --- !u!114 &3508676998418473860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,7 +176,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1306837973801804091}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 5

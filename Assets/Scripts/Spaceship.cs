@@ -61,7 +61,6 @@ public class Spaceship : MonoBehaviour //NetworkBehaviour
     void OnCollisionEnter(Collision collision)
     {
         Vector3 relativePosition = transform.InverseTransformPoint(collision.transform.position);
-
         if(relativePosition.x > 0) {
             DisableReactor(_sliderR);
             rightReactorBroke = true;
