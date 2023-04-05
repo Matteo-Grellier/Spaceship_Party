@@ -10,17 +10,19 @@ public class Spaceship : MonoBehaviour //NetworkBehaviour
     public float smoothSpeed = 0.125f;
     private Slider _sliderR;
     private Slider _sliderL;
-    public Gauge gauge;
+    public GameObject[] switches;
     float vR = 0f;
     float vL = 0f;
     float average = 0f;
+    public float fuel = 1f;
+    public float fuelMultiplier = 0.001f;
     public bool canRecharge = false;
     public bool canBoost = false;
     public bool leftReactorBroke = false;
     public bool rightReactorBroke = false;
 
     private void Awake() {
-        
+        switches = GameObject.Find("v2 fuse box")?.GetComponent<FuseBox>().fuseBoxSwitches;
         _sliderL = GameObject.Find("SliderL")?.GetComponent<Slider>();
         _sliderR = GameObject.Find("SliderR")?.GetComponent<Slider>();
         rb = GetComponent<Rigidbody>();
@@ -28,39 +30,38 @@ public class Spaceship : MonoBehaviour //NetworkBehaviour
 
         _sliderR?.onValueChanged.AddListener((v) => {
             vR = v;
-            average = AverageSliders(vR, vL);
+            average = SetAverageSlidersValue(vR, vL);
         });
         _sliderL?.onValueChanged.AddListener((v) => {
             vL = v;
-            average = AverageSliders(vR, vL);
+            average = SetAverageSlidersValue(vR, vL);
         });
     }
 
-    private void Update()
-    {
-        if(canBoost)
-        {
+    private void Update() {
+        if (canBoost) {
             boostSpeed = 25f;
-        } else
-        {
+        } else {
             boostSpeed = 1f;
         }
     }
 
-    public void RechargeGauge()
-    {
-        if (canRecharge)
-        {
-            gauge?.RechargeFuel();
-        }
-    }
-
     private void FixedUpdate() {
-      MovePlayer(average, vR, vL);
+        FuelConsumer();
+        MovePlayer(average, vR, vL);
     }
 
-    private float AverageSliders(float vR, float vL) {
-        return (vR + vL) / 2;
+    void OnCollisionEnter(Collision collision) {
+        Vector3 relativePosition = transform.InverseTransformPoint(collision.transform.position);
+        if(relativePosition.x > 0) {
+            DisableReactor(_sliderR);
+            TurnOffSwitches(6, 11);
+            rightReactorBroke = true;
+        } else {
+            DisableReactor(_sliderL);
+            TurnOffSwitches(0, 5);
+            leftReactorBroke = true;
+        }
     }
 
     private void MovePlayer(float average, float vR, float vL) {
@@ -74,23 +75,86 @@ public class Spaceship : MonoBehaviour //NetworkBehaviour
         slider.interactable = false;
     }
 
-    void OnCollisionEnter(Collision collision)
-    {
-        Vector3 relativePosition = transform.InverseTransformPoint(collision.transform.position);
-        if(relativePosition.x > 0) {
-            DisableReactor(_sliderR);
-            rightReactorBroke = true;
-        } else {
-            DisableReactor(_sliderL);
-            leftReactorBroke = true;
+    private float GetAverageSlidersValue() {
+        return (_sliderL.value + _sliderR.value) / 2;
+    }
+
+    private bool IsSwitchesOn(int startIndex, int stopIndex) {
+        for (int i = startIndex; i <= stopIndex; i++) {
+            if (!switches[i].GetComponent<fuse>().GetState()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private float SetAverageSlidersValue(float vR, float vL) {
+        return (vR + vL) / 2;
+    }
+
+    private void TurnOffSwitches(int startIndex, int stopIndex) {
+        for (int i = startIndex; i <= stopIndex; i++) {
+            switches[i]?.GetComponent<fuse>().Rotation();
         }
     }
 
-    public bool GetLeftReactorBroke() {
-        return leftReactorBroke;
+    private void FuelConsumer() {
+        float slidersPower = GetAverageSlidersValue();
+        if (fuel > 0.0) {
+            if (leftReactorBroke && rightReactorBroke) {
+                if (IsSwitchesOn(0, 5)) {
+                    _sliderL.interactable = true;
+                    leftReactorBroke = false;
+                }
+                if (IsSwitchesOn(6, 11)) {
+                    _sliderR.interactable = true;
+                    rightReactorBroke = false;
+                }
+            } else if (leftReactorBroke) {
+                if (IsSwitchesOn(0, 5)) {
+                    _sliderL.interactable = true;
+                    leftReactorBroke = false;
+                }
+            } else if (rightReactorBroke) {
+                if (IsSwitchesOn(6, 11)) {
+                    _sliderR.interactable = true;
+                    rightReactorBroke = false;
+                }
+            } else {
+                _sliderL.interactable = true;
+                _sliderR.interactable = true;
+            }
+            fuel = fuel - (slidersPower * fuelMultiplier);
+        } else {
+            fuel = 0f;
+            DisableReactor(_sliderL);
+            DisableReactor(_sliderR);
+        }
     }
 
-    public bool GetRightReactorBroke() {
-        return rightReactorBroke;
+    public float GetFuelLevel() {
+        return fuel;
+    }
+
+    private void RechargeFuel() {
+        fuel += 0.01f;
+    }
+
+    public void RechargeGauge() {
+        if (canRecharge) {
+            RechargeFuel();
+        }
+    }
+
+    public void SetInteractableSliders(bool isInteractable)
+    {
+        _sliderR.interactable = isInteractable;
+        _sliderL.interactable = isInteractable;
+    }
+
+    public void SetSlidersValue(float newValue)
+    {
+        _sliderR.value = newValue;
+        _sliderL.value = newValue;
     }
 }
