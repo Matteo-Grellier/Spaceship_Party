@@ -54,19 +54,19 @@ public class Key : MonoBehaviour
 
         if(!spaceship)
         {
-            spaceship = GameObject.FindWithTag("spaceship").GetComponent<Spaceship>();
+            spaceship = GameObject.FindWithTag("spaceship")?.GetComponent<Spaceship>();
         }
 
         if (isStart) 
         {
             RotateKeyRight();
-            spaceship.SetInteractableSliders(true);
+            spaceship?.SetInteractableSliders(true);
         }
         else 
         {
             RotateKeyLeft();
-            spaceship.SetInteractableSliders(false);
-            spaceship.SetSlidersValue(0f);
+            spaceship?.SetInteractableSliders(false);
+            spaceship?.SetSlidersValue(0f);
         }
     }
 }
