@@ -13,13 +13,18 @@ public class RechargeButton : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(isPressed)
+        if(!spaceship)
+        {
+            spaceship = GameObject.FindWithTag("spaceship").GetComponent<Spaceship>();
+        }
+
+        if (isPressed)
         {
             spaceship?.RechargeGauge();
         }
