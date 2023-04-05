@@ -6,7 +6,7 @@ public class Spaceship : MonoBehaviour //NetworkBehaviour
 {
     private Rigidbody rb;
     public float multiplierSpeed;
-    [SerializeField] private float boostSpeed = 0f;
+    [SerializeField] private float boostSpeed = 1f;
     public float smoothSpeed = 0.125f;
     private Slider _sliderR;
     private Slider _sliderL;
@@ -43,7 +43,7 @@ public class Spaceship : MonoBehaviour //NetworkBehaviour
             boostSpeed = 25f;
         } else
         {
-            boostSpeed = 0f;
+            boostSpeed = 1f;
         }
     }
 
