@@ -15,9 +15,13 @@ public class Detector : MonoBehaviour
     
     private void OnTriggerEnter(Collider other) 
     {
-        detectorRed.SetActive(true);
-        detectorRed.transform.LookAt(other.gameObject.transform);
-        StartCoroutine(waitFiveSecond());
+        print(other.gameObject.name);
+        if(other.gameObject.name is "Obstacle")
+        {
+            detectorRed.SetActive(true);
+            detectorRed.transform.LookAt(other.gameObject.transform);
+            StartCoroutine(waitFiveSecond());
+        }
     }
 
     IEnumerator waitFiveSecond()
