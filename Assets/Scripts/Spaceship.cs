@@ -145,4 +145,16 @@ public class Spaceship : MonoBehaviour //NetworkBehaviour
             RechargeFuel();
         }
     }
+
+    public void SetInteractableSliders(bool isInteractable)
+    {
+        _sliderR.interactable = isInteractable;
+        _sliderL.interactable = isInteractable;
+    }
+
+    public void SetSlidersValue(float newValue)
+    {
+        _sliderR.value = newValue;
+        _sliderL.value = newValue;
+    }
 }
