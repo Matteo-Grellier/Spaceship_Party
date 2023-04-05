@@ -15,11 +15,13 @@ public class Spaceship : MonoBehaviour //NetworkBehaviour
     float vL = 0f;
     float average = 0f;
     public float fuel = 1f;
+    public float maxFuel = 1f;
     public float fuelMultiplier = 0.001f;
     public bool canRecharge = false;
     public bool canBoost = false;
     public bool leftReactorBroke = false;
     public bool rightReactorBroke = false;
+    public bool shieldActivated = false;
 
     private void Awake() {
         switches = GameObject.Find("v2 fuse box")?.GetComponent<FuseBox>().fuseBoxSwitches;
@@ -43,6 +45,15 @@ public class Spaceship : MonoBehaviour //NetworkBehaviour
             boostSpeed = 25f;
         } else {
             boostSpeed = 1f;
+        }
+
+        if(shieldActivated)
+        {
+            this.transform.Find("Shield").gameObject.SetActive(true);
+        } 
+        else
+        {
+            this.transform.Find("Shield").gameObject.SetActive(false);
         }
     }
 
@@ -136,14 +147,19 @@ public class Spaceship : MonoBehaviour //NetworkBehaviour
         return fuel;
     }
 
-    private void RechargeFuel() {
-        fuel += 0.01f;
+    private void RechargeFuel(float value) {
+        fuel += value;
     }
 
     public void RechargeGauge() {
         if (canRecharge) {
-            RechargeFuel();
+            RechargeFuel(0.01f);
         }
+    }
+
+    public void FullyRechargeGauge()
+    {
+        RechargeFuel(maxFuel-fuel);
     }
 
     public void SetInteractableSliders(bool isInteractable)
