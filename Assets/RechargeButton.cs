@@ -26,7 +26,6 @@ public class RechargeButton : MonoBehaviour, IPointerDownHandler, IPointerUpHand
 
         if (isPressed)
         {
-            Debug.Log("JE SUIS IS PRESSED DONC GO");
             spaceship?.RechargeGauge();
         }
 
@@ -35,7 +34,6 @@ public class RechargeButton : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     public void OnPointerDown(PointerEventData data)
     {
         isPressed = true;
-        Debug.Log("OUAI BONSOIR ZUEIUZHI");
     }
 
     public void OnPointerUp(PointerEventData data)
