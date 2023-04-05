@@ -16,6 +16,8 @@ public class Spaceship : MonoBehaviour //NetworkBehaviour
     float average = 0f;
     public bool canRecharge = false;
     public bool canBoost = false;
+    public bool leftReactorBroke = false;
+    public bool rightReactorBroke = false;
 
     private void Awake() {
         
@@ -65,5 +67,30 @@ public class Spaceship : MonoBehaviour //NetworkBehaviour
         rb.AddRelativeForce(0f, 0f, multiplierSpeed * average * boostSpeed, ForceMode.Force);
         float diffSliders = (vL - vR);
         transform.Rotate(0f, diffSliders, 0f);
+    }
+
+    private void DisableReactor(Slider slider) {
+        slider.value = 0;
+        slider.interactable = false;
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        Vector3 relativePosition = transform.InverseTransformPoint(collision.transform.position);
+        if(relativePosition.x > 0) {
+            DisableReactor(_sliderR);
+            rightReactorBroke = true;
+        } else {
+            DisableReactor(_sliderL);
+            leftReactorBroke = true;
+        }
+    }
+
+    public bool GetLeftReactorBroke() {
+        return leftReactorBroke;
+    }
+
+    public bool GetRightReactorBroke() {
+        return rightReactorBroke;
     }
 }
