@@ -6,13 +6,9 @@ public class Panel : MonoBehaviour
 {
     private bool IsUp;
     private bool OnMoov = false;
-
     private Vector3 savePos;
-
     private Vector3 saveSize;
-
     [SerializeField] private float sizeALaMano = 280;
-
     private float t = 0.125f;
     public bool isBroken = true;
     public GameObject breakIndicator;
@@ -66,7 +62,6 @@ public class Panel : MonoBehaviour
         } else{
             breakIndicator.SetActive(false);
         }
-
         if (isKey){
             isBroken = false;
             breakIndicatorKey.SetActive(true);
