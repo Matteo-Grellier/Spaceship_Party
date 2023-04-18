@@ -720,6 +720,7 @@ MonoBehaviour:
   smoothSpeed: 0.2
   offset: {x: 0, y: 5, z: 0}
   blockedCameraPosition: 0
+  blockedCameraRotation: 0
 --- !u!81 &460986580
 AudioListener:
   m_ObjectHideFlags: 0
