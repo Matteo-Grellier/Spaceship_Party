@@ -83,8 +83,6 @@ public class CameraFollow : MonoBehaviour
 
     void FixedUpdate() 
     {
-        // Vector3 desiredPosition;
-
         if(target == null) 
         {
             target = GameObject.FindGameObjectWithTag("spaceship")?.transform;
@@ -93,15 +91,12 @@ public class CameraFollow : MonoBehaviour
             transform.position = defaultPosition;
             return;
         }
-
-        // DesiredRotation = Quaternion.LookRotation(target.position).eulerAngles;
         
         Vector3 smoothPosition = Vector3.Lerp(transform.position, DesiredPosition, smoothSpeed);
 
         transform.position = smoothPosition;
-        // transform.LookAt(target);
+
         DesiredLookAt = target.position;
         transform.LookAt(DesiredLookAt);
-        // transform.rotation = Quaternion.Euler(DesiredRotation);
     }
 }
