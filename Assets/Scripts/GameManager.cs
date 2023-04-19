@@ -22,6 +22,7 @@ public class GameManager : NetworkBehaviour
     #endregion
 
     public bool hasRaceStarted = false;
+    public string displayedCounterValue;
     
     // Start is called before the first frame update
     void Start()
@@ -41,23 +42,22 @@ public class GameManager : NetworkBehaviour
         while(counterTime > 0) 
         {
             yield return new WaitForSeconds(1);
-            RpcDebug(counterTime.ToString());
+            RpcDisplayCounter(counterTime.ToString());
             counterTime--;
         }
 
-        // RpcStartRace();
-        RpcDebug("[START GAME]");
+        RpcDisplayCounter("Go!");
         hasRaceStarted = true;
     }
 
-    // [ClientRpc]
-    // void RpcStartRace()
-    // {
-    //     Debug.Log("start my game duuude");
-    // }
+    [ClientRpc]
+    void RpcDisplayCounter(string counterValue)
+    {
+        displayedCounterValue = counterValue;
+    }
 
     [ClientRpc]
-    void RpcDebug(string debug)
+    void RpcDebugLog(string debug)
     {
         Debug.Log(debug);
     }
