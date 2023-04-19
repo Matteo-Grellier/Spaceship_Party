@@ -26,6 +26,12 @@ public class SphereTrigger : MonoBehaviour
 
         if (other.gameObject.CompareTag("spaceship") && other is Collider)
         {
+            Collider trigger = other;
+            if (trigger.isTrigger == true) // if its the sphere trigger of the spaceship, does nothing
+            {
+                return;
+            }
+
             isAttract = true;
             
             rb = other.GetComponent<Rigidbody>();
