@@ -87,7 +87,8 @@ public class CameraFollow : MonoBehaviour
         {
             target = GameObject.FindGameObjectWithTag("spaceship")?.transform;
             defaultRotation = transform.eulerAngles;
-            defaultPosition = target.position + offset;
+            if(target != null)
+                defaultPosition = target.position + offset;
             transform.position = defaultPosition;
             return;
         }
