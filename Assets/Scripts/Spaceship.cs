@@ -111,6 +111,13 @@ public class Spaceship : MonoBehaviour //NetworkBehaviour
 
     private void FuelConsumer() {
         float slidersPower = GetAverageSlidersValue();
+        Debug.Log(GameManager.instance.hasRaceStarted);
+
+        if(!GameManager.instance.hasRaceStarted) {
+            SetInteractableSliders(false);
+            return;
+        }
+
         if (fuel > 0.0) {
             if (leftReactorBroke && rightReactorBroke) {
                 if (IsSwitchesOn(0, 5)) {
@@ -132,8 +139,7 @@ public class Spaceship : MonoBehaviour //NetworkBehaviour
                     rightReactorBroke = false;
                 }
             } else {
-                _sliderL.interactable = true;
-                _sliderR.interactable = true;
+                SetInteractableSliders(true);
             }
             fuel = fuel - (slidersPower * fuelMultiplier);
         } else {
