@@ -21,7 +21,8 @@ public class RechargeButton : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     {
         if(!spaceship)
         {
-            spaceship = GameObject.FindWithTag("spaceship").GetComponent<Spaceship>();
+            spaceship = GameObject.FindWithTag("spaceship")?.GetComponent<Spaceship>();
+            return;
         }
 
         if (isPressed)

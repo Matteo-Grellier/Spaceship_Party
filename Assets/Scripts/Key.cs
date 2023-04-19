@@ -14,7 +14,7 @@ public class Key : MonoBehaviour
     public float waitTime = 1.5f;
     private float timer = 0f;
 
-    [SerializeField] private SliderAverage sliders;
+    [SerializeField] private Spaceship spaceship;
 
     //private Spaceship spaceship;
 
@@ -40,8 +40,6 @@ public class Key : MonoBehaviour
         }
     }
 
-
-
     void Start(){
         dirShake = transform.forward;
         initPos = transform.position; // store this to avoid floating point error drift
@@ -51,21 +49,21 @@ public class Key : MonoBehaviour
         isStart = !isStart;
     }
 
-    private void FixedUpdate(){
+    private void FixedUpdate()
+    {
 
-        //if(!spaceship)
-        //{
-        //    spaceship = GameObject.FindWithTag("spaceship").GetComponent<Spaceship>();
-        //}
-
-        if (isStart) {
-            RotateKeyRight();
-            sliders.SetInteractable(true);
+        if(!spaceship)
+        {
+            spaceship = GameObject.FindWithTag("spaceship")?.GetComponent<Spaceship>();
         }
-        else {
+
+        if(!isStart)
+        {
             RotateKeyLeft();
-            sliders.SetInteractable(false);
-            sliders.SetValue(0f);
+           spaceship?.SetSlidersValue(0f); 
+        } else 
+        {
+            RotateKeyRight();
         }
     }
 }
