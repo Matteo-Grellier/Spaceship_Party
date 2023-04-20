@@ -24,16 +24,9 @@ public class GameManager : NetworkBehaviour
     public bool hasRaceStarted = false;
     public string displayedCounterValue;
     
-    // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(LaunchRaceCounter(10));
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     [Server]

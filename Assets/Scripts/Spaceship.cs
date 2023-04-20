@@ -1,8 +1,8 @@
 using UnityEngine;
-//using Mirror;
+using Mirror;
 using UnityEngine.UI;
 
-public class Spaceship : MonoBehaviour //NetworkBehaviour
+public class Spaceship : NetworkBehaviour 
 {
     private Rigidbody rb;
     public float multiplierSpeed;
@@ -23,7 +23,8 @@ public class Spaceship : MonoBehaviour //NetworkBehaviour
     public bool rightReactorBroke = false;
     public bool shieldActivated = false;
 
-    private void Awake() {
+    private void Awake() 
+    {
         switches = GameObject.Find("v2 fuse box")?.GetComponent<FuseBox>().fuseBoxSwitches;
         _sliderL = GameObject.Find("SliderL")?.GetComponent<Slider>();
         _sliderR = GameObject.Find("SliderR")?.GetComponent<Slider>();
@@ -40,7 +41,11 @@ public class Spaceship : MonoBehaviour //NetworkBehaviour
         });
     }
 
-    private void Update() {
+    private void Update() 
+    { 
+        if (!isLocalPlayer)
+            this.enabled = false;
+
         if (canBoost) {
             boostSpeed = 25f;
         } else {
