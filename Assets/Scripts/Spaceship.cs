@@ -180,7 +180,7 @@ public class Spaceship : NetworkBehaviour
         else 
         {
             panel.isGauge = true;
-            fuel = 0f;
+            fuel = 0f; 
             DisableReactor(_sliderL);
             DisableReactor(_sliderR);
         }
