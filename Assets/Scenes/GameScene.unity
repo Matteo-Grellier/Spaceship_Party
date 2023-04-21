@@ -251,9 +251,33 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5119705653618288535, guid: 9f8f6be27fff6b64a85f92c94189af5a, type: 3}
+      propertyPath: isKey
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5119705653618288535, guid: 9f8f6be27fff6b64a85f92c94189af5a, type: 3}
+      propertyPath: isGauge
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5119705653618288535, guid: 9f8f6be27fff6b64a85f92c94189af5a, type: 3}
+      propertyPath: isBroken
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5119705653618288535, guid: 9f8f6be27fff6b64a85f92c94189af5a, type: 3}
+      propertyPath: isFuseLeft
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5119705653618288535, guid: 9f8f6be27fff6b64a85f92c94189af5a, type: 3}
+      propertyPath: isFuseRight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5119705653618288535, guid: 9f8f6be27fff6b64a85f92c94189af5a, type: 3}
       propertyPath: sizeALaMano
       value: 600
       objectReference: {fileID: 0}
+    - target: {fileID: 5119705653618288535, guid: 9f8f6be27fff6b64a85f92c94189af5a, type: 3}
+      propertyPath: breakIndicator
+      value: 
+      objectReference: {fileID: 28796666}
     - target: {fileID: 6027733073001586950, guid: 9f8f6be27fff6b64a85f92c94189af5a, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -269,6 +293,36 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0476cb74adfe923618139199a2f3e3d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &28796665 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7593281925245543108, guid: 9f8f6be27fff6b64a85f92c94189af5a, type: 3}
+  m_PrefabInstance: {fileID: 28796663}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &28796666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 28796665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e31c28a9da5a834897e65a136775582, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isBroken: 1
+  img: {fileID: 28796667}
+--- !u!114 &28796667 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7593281925245543226, guid: 9f8f6be27fff6b64a85f92c94189af5a, type: 3}
+  m_PrefabInstance: {fileID: 28796663}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 28796665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &75184514
@@ -2904,7 +2958,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8690919580388551946, guid: cb6a13d7c49329a46948f1d265d08f4a, type: 3}
       propertyPath: isBoostZone
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8690919580388551946, guid: cb6a13d7c49329a46948f1d265d08f4a, type: 3}
       propertyPath: atractionForce
