@@ -21,12 +21,15 @@ public class GameManager : NetworkBehaviour
 
     #endregion
 
+    public GameObject localPlayer;
+
     public bool hasRaceStarted = false;
     public string displayedCounterValue;
     
     void Start()
     {
         StartCoroutine(LaunchRaceCounter(10));
+        localPlayer = NetworkClient.localPlayer.gameObject;
     }
 
     [Server]

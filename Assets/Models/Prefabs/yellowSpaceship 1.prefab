@@ -85,17 +85,13 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0.1
+  switches: []
   multiplierSpeed: 25
   boostSpeed: 1
   smoothSpeed: 0.125
-  switches: []
   fuel: 1
-  maxFuel: 1
-  fuelMultiplier: 0.001
   canRecharge: 0
   canBoost: 0
-  leftReactorBroke: 0
-  rightReactorBroke: 0
   shieldActivated: 0
 --- !u!114 &3508676998418473860
 MonoBehaviour:
@@ -165,7 +161,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2521925853690956271}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.0132}
+  m_LocalPosition: {x: 0, y: -0.0112, z: -0.1039}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -235,7 +231,7 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.5188679, g: 0, b: 0, a: 1}
+      key0: {r: 0.51759696, g: 0.5176471, b: 0, a: 1}
       key1: {r: 1, g: 1, b: 1, a: 0}
       key2: {r: 1, g: 1, b: 1, a: 0}
       key3: {r: 1, g: 1, b: 1, a: 0}

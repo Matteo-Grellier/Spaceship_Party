@@ -85,19 +85,24 @@ public class CameraFollow : MonoBehaviour
     {
         if(target == null) 
         {
-            target = GameObject.FindGameObjectWithTag("spaceship")?.transform;
+            if (GameManager.instance.localPlayer == null)
+                return; 
+            
+            target = GameManager.instance.localPlayer.transform;
+            Debug.Log("[cmr] target= " + target);
             defaultRotation = transform.eulerAngles;
             if(target != null)
                 defaultPosition = target.position + offset;
             transform.position = defaultPosition;
-            return;
         }
-        
-        Vector3 smoothPosition = Vector3.Lerp(transform.position, DesiredPosition, smoothSpeed);
+        else 
+        {
+            Vector3 smoothPosition = Vector3.Lerp(transform.position, DesiredPosition, smoothSpeed);
 
-        transform.position = smoothPosition;
+            transform.position = smoothPosition;
 
-        DesiredLookAt = target.position;
-        transform.LookAt(DesiredLookAt);
+            DesiredLookAt = target.position;
+            transform.LookAt(DesiredLookAt);
+        }
     }
 }
