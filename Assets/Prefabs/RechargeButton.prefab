@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 446662713680160400}
   - component: {fileID: 446662713680160401}
   - component: {fileID: 446662713680160406}
-  - component: {fileID: 446662713680160403}
+  - component: {fileID: 6574913965641922008}
   m_Layer: 5
   m_Name: RechargeButton
   m_TagString: Untagged
@@ -122,7 +122,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &446662713680160403
+--- !u!114 &6574913965641922008
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -131,7 +131,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 446662713680160404}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f57b9df6609a964391a4b6b3c3d04c3, type: 3}
+  m_Script: {fileID: 11500000, guid: 75dbd973e0275364fa6b3fbdb871825b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spaceship: {fileID: 0}
