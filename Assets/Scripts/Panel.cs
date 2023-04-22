@@ -6,13 +6,9 @@ public class Panel : MonoBehaviour
 {
     private bool IsUp;
     private bool OnMoov = false;
-
     private Vector3 savePos;
-
     private Vector3 saveSize;
-
     [SerializeField] private float sizeALaMano = 280;
-
     private float t = 0.125f;
     [SerializeField] private bool isBroken = false;
     public BreakIndicator breakIndicator;
@@ -25,14 +21,14 @@ public class Panel : MonoBehaviour
     public bool isGauge = true;
     public bool isFuseLeft = true;
     public bool isFuseRight = true;
-    
-    void Start() 
+
+    void Start()
     {
         savePos = transform.position;
         breakIndicator.isBroken = false;
     }
 
-    void FixedUpdate() 
+    void FixedUpdate()
     {
         if (OnMoov){
             if (!IsUp) {
@@ -56,7 +52,7 @@ public class Panel : MonoBehaviour
             if (t+0.0125f>1){
                 t = 1f;
             }
-        } 
+        }
 
         // activate/desactivate break indicator
         if (isBroken)
@@ -71,7 +67,7 @@ public class Panel : MonoBehaviour
         // if none are activated, isBroken = false
         if (!isKey && !isGauge && !isFuseLeft && !isFuseRight)
             isBroken = false;
-        
+
         // set their active property to the value of the boolean
         breakIndicatorKey.SetActive(isKey);
         breakIndicatorGauge.SetActive(isGauge);
