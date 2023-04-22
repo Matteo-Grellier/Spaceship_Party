@@ -27,6 +27,20 @@ public class Spaceship : NetworkBehaviour
     private bool rightReactorBroke = false;
     public bool shieldActivated = false;
 
+    public override void OnStartClient()
+    {
+        base.OnStartClient();
+        string netID = GetComponent<NetworkIdentity>().netId.ToString();
+        Spaceship clientSpaceship = GetComponent<Spaceship>();
+        GameManager.RegisterPlayer(netID, clientSpaceship);
+    }
+
+    public override void OnStopClient()
+    {
+        base.OnStopClient();
+        GameManager.UnregisterPlayer(transform.name);
+    }
+
     private void Awake() 
     {
         panel = GameObject.Find("validPannel").GetComponent<Panel>();
