@@ -15,58 +15,63 @@ public class Key : MonoBehaviour
     private float timer = 0f;
 
     [SerializeField] private Spaceship spaceship;
-
-    //private Spaceship spaceship;
+    [SerializeField] private Panel panel;
 
 
     // STOP //
-    private void RotateKeyLeft(){
+    private void RotateKeyLeft()
+    {
         timer = 0f; // reset time for next restart
 
         Quaternion desiredRotation = Quaternion.Euler(0f, 0f, 0f);
         transform.rotation = Quaternion.Lerp(transform.rotation, desiredRotation, smoothSpeed);
     }
+
     // START //
-    private void RotateKeyRight(){
+    private void RotateKeyRight()
+    {
         // turn the key
         Quaternion desiredRotation = Quaternion.Euler(0f, 0f, startingAngle);
         transform.rotation = Quaternion.Lerp(transform.rotation, desiredRotation, smoothSpeed);
 
         timer += Time.deltaTime;
 
-        if(startingAngle >= -45 && timer < waitTime){
+        if(startingAngle >= -45 && timer < waitTime)
+        {
             // shake the key
             transform.position = new Vector3(transform.position.x  + Mathf.Cos(Time.time * frequency)*amplitude, transform.position.y + Mathf.Sin(Time.time * frequency)*amplitude, transform.position.z);
         }
     }
 
-    void Start(){
+    void Start()
+    {
         dirShake = transform.forward;
         initPos = transform.position; // store this to avoid floating point error drift
     }
 
-    public void OnEventClick(){
+    public void OnEventClick()
+    {
         isStart = !isStart;
     }
 
     private void FixedUpdate()
     {
 
-        if(!spaceship)
+        if(!spaceship && GameManager.instance.localPlayer != null)
         {
-            spaceship = GameObject.FindWithTag("spaceship").GetComponent<Spaceship>();
+            spaceship = GameManager.instance.localPlayer.GetComponent<Spaceship>();
         }
 
-        if (isStart) 
-        {
-            RotateKeyRight();
-            spaceship.SetInteractableSliders(true);
-        }
-        else 
+        if(!isStart)
         {
             RotateKeyLeft();
-            spaceship.SetInteractableSliders(false);
-            spaceship.SetSlidersValue(0f);
+            spaceship?.SetSlidersValue(0f); 
+            panel.isKey = true;
+        } 
+        else 
+        {
+            panel.isKey = false;
+            RotateKeyRight();
         }
     }
 }
