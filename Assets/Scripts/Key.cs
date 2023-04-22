@@ -57,7 +57,7 @@ public class Key : MonoBehaviour
     private void FixedUpdate()
     {
 
-        if(!spaceship)
+        if(!spaceship && GameManager.instance.localPlayer != null)
         {
             spaceship = GameManager.instance.localPlayer.GetComponent<Spaceship>();
         }

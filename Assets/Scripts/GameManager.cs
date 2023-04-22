@@ -22,19 +22,27 @@ public class GameManager : NetworkBehaviour
     #endregion
 
     public GameObject localPlayer;
+    [SerializeField] private GameObject launchBtn;
 
     public bool hasRaceStarted = false;
     public string displayedCounterValue;
-    
-    void Start()
+
+    private void Start() 
     {
-        StartCoroutine(LaunchRaceCounter(10));
+        if (isServer)
+            launchBtn.SetActive(true);
     }
 
     private void Update() 
     {
         if(localPlayer == null )
             localPlayer = NetworkClient.localPlayer.gameObject;
+    }
+
+    public void LaunchRaceIfServer()
+    {
+        StartCoroutine(LaunchRaceCounter(10));
+        launchBtn.SetActive(false);
     }
 
     [Server]
@@ -56,6 +64,8 @@ public class GameManager : NetworkBehaviour
     void RpcDisplayCounter(string counterValue)
     {
         displayedCounterValue = counterValue;
+        Debug.Log(counterValue);
+        RpcDebugLog(counterValue);
     }
 
     [ClientRpc]
