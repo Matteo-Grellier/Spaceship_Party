@@ -27,45 +27,39 @@ public class CameraFollow : MonoBehaviour
     private Vector3 DesiredPosition 
     {
         get
-        {
-            float distanceWithBorder = 15;
-
-            // float desiredBlockedPosition;
-            
+        {            
             switch(blockedCameraPosition)
             {
                 case BlockedAxes.x:
-                    float desiredX = target.position.x;
-                    
-                    if(target.position.x > GameManager.instance.rightMapBorderPosition.x-distanceWithBorder 
-                    || target.position.x < GameManager.instance.leftMapBorderPosition.x+distanceWithBorder)
-                    {
-                        desiredX = transform.position.x;
-                    }
+
+                    float desiredX = DesiredBlockPosition(
+                        target.position.x, 
+                        GameManager.instance.rightMapBorderPosition.x,
+                        GameManager.instance.leftMapBorderPosition.x,
+                        transform.position.x
+                    );
 
                     desiredPosition = new Vector3(desiredX, target.position.y, target.position.z) + offset;
                     break;
                 case BlockedAxes.y:
 
-                    float desiredY = target.position.y;
-                    
-                    if(target.position.y > GameManager.instance.rightMapBorderPosition.y-distanceWithBorder 
-                    || target.position.y < GameManager.instance.leftMapBorderPosition.y+distanceWithBorder)
-                    {
-                        desiredY = transform.position.y;
-                    }
+                    float desiredY = DesiredBlockPosition(
+                        target.position.y, 
+                        GameManager.instance.rightMapBorderPosition.y,
+                        GameManager.instance.leftMapBorderPosition.y,
+                        transform.position.y
+                    );
 
                     desiredPosition = new Vector3(target.position.x, desiredY, target.position.z) + offset;
                     break;
                 case BlockedAxes.z:
 
-                    float desiredZ = target.position.z;
-                    
-                    if(target.position.z > GameManager.instance.rightMapBorderPosition.z-distanceWithBorder 
-                    || target.position.z < GameManager.instance.leftMapBorderPosition.z+distanceWithBorder)
-                    {
-                        desiredY = transform.position.z;
-                    }
+                    float desiredZ = DesiredBlockPosition(
+                        target.position.z, 
+                        GameManager.instance.rightMapBorderPosition.z,
+                        GameManager.instance.leftMapBorderPosition.z,
+                        transform.position.z
+                    );
 
                     desiredPosition = new Vector3(target.position.x, target.position.y, desiredZ) + offset;
                     break;
@@ -108,6 +102,19 @@ public class CameraFollow : MonoBehaviour
         set
         {
             desiredLookAt = value;
+        }
+    }
+
+    private float DesiredBlockPosition(float targetPositionAxe, float rightBorderAxe, float leftBorderAxe, float transformPositionAxe) 
+    {
+        float distanceWithBorder = 15;
+
+        if(targetPositionAxe > rightBorderAxe - distanceWithBorder 
+        || targetPositionAxe < leftBorderAxe + distanceWithBorder)
+        {
+            return transformPositionAxe;
+        } else {
+            return targetPositionAxe;
         }
     }
 
