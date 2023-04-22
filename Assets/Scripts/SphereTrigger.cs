@@ -7,7 +7,7 @@ public class SphereTrigger : MonoBehaviour
     public bool isSun = false;
     public bool isBoostZone = true;
     private bool isAttract = false;
-    [Range(0.0f, 0.1f)] public float atractionForce = 0.1f;
+    [Range(0.0f, 0.01f)] public float atractionForce = 0.01f;
 
 
     public void Update()

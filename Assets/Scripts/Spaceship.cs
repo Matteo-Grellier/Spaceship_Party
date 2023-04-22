@@ -124,7 +124,8 @@ public class Spaceship : NetworkBehaviour
     {
         for (int i = startIndex; i <= stopIndex; i++) 
         {
-            switches[i]?.GetComponent<fuse>().Rotation();
+            if (switches[i].transform.position.z == -180) // if is down
+                switches[i]?.GetComponent<fuse>().Rotation();
         }
     }
 
