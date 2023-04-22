@@ -194,7 +194,8 @@ public class Spaceship : NetworkBehaviour
 
     private void RechargeFuel(float value) 
     {
-        fuel += value;
+        if(fuel < maxFuel)
+            fuel += value;
     }
 
     public void RechargeGauge() 
