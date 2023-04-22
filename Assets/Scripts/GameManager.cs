@@ -9,6 +9,8 @@ public class GameManager : NetworkBehaviour
     #region Singleton
     public static GameManager instance;
 
+    public Spaceship winner;
+
     void Awake()
     {
         if(instance != null)
@@ -37,6 +39,14 @@ public class GameManager : NetworkBehaviour
     {
         if(localPlayer == null )
             localPlayer = NetworkClient.localPlayer.gameObject;
+
+        if(winner != null)
+            FinishGame();
+    }
+
+    private void FinishGame() 
+    {
+        Debug.Log("[THE GAME IS FINISH BECAUSE THERE IS A VERY BIG WINNER DUUUDE]");
     }
 
     public void LaunchRaceIfServer()
