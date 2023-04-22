@@ -62,7 +62,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isSun: 1
   isBoostZone: 0
-  atractionForce: 0.5
+  atractionForce: 0.0903
 --- !u!1001 &2677685668364960712
 PrefabInstance:
   m_ObjectHideFlags: 0
