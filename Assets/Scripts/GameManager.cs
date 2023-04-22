@@ -29,7 +29,12 @@ public class GameManager : NetworkBehaviour
     void Start()
     {
         StartCoroutine(LaunchRaceCounter(10));
-        localPlayer = NetworkClient.localPlayer.gameObject;
+    }
+
+    private void Update() 
+    {
+        if(localPlayer == null )
+            localPlayer = NetworkClient.localPlayer.gameObject;
     }
 
     [Server]
