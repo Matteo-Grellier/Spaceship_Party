@@ -48,6 +48,7 @@ public class GameManager : NetworkBehaviour
         }
 
         RpcDisplayCounter("Go!");
+        RpcLaunchRace();
         hasRaceStarted = true;
     }
 
@@ -55,6 +56,11 @@ public class GameManager : NetworkBehaviour
     void RpcDisplayCounter(string counterValue)
     {
         displayedCounterValue = counterValue;
+    }
+
+    [ClientRpc]
+    void RpcLaunchRace()
+    {
         hasRaceStarted = true;
     }
 
