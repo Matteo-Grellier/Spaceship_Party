@@ -91,9 +91,6 @@ public class CameraFollow : MonoBehaviour
             target = GameManager.instance.localPlayer.transform;
             Debug.Log("[cmr] target= " + target);
             defaultRotation = transform.eulerAngles;
-            if(target != null)
-                defaultPosition = target.position + offset;
-            transform.position = defaultPosition;
         }
         else 
         {
