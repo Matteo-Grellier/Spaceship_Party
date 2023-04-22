@@ -4,7 +4,7 @@ public class CameraFollow : MonoBehaviour
 {
     private Transform target;
     
-    public float smoothSpeed = 0.2f;
+    public float smoothSpeed = 0.05f;
     public Vector3 offset = new Vector3(0, 20f, 0); 
 
     private Vector3 defaultRotation;
@@ -28,16 +28,46 @@ public class CameraFollow : MonoBehaviour
     {
         get
         {
+            float distanceWithBorder = 15;
+
+            // float desiredBlockedPosition;
+            
             switch(blockedCameraPosition)
             {
                 case BlockedAxes.x:
-                    desiredPosition = new Vector3(transform.position.x, target.position.y, target.position.z) + offset;
+                    float desiredX = target.position.x;
+                    
+                    if(target.position.x > GameManager.instance.rightMapBorderPosition.x-distanceWithBorder 
+                    || target.position.x < GameManager.instance.leftMapBorderPosition.x+distanceWithBorder)
+                    {
+                        desiredX = transform.position.x;
+                    }
+
+                    desiredPosition = new Vector3(desiredX, target.position.y, target.position.z) + offset;
                     break;
                 case BlockedAxes.y:
-                    desiredPosition = new Vector3(target.position.x, transform.position.y, target.position.z) + offset;
+
+                    float desiredY = target.position.y;
+                    
+                    if(target.position.y > GameManager.instance.rightMapBorderPosition.y-distanceWithBorder 
+                    || target.position.y < GameManager.instance.leftMapBorderPosition.y+distanceWithBorder)
+                    {
+                        desiredY = transform.position.y;
+                    }
+
+                    desiredPosition = new Vector3(target.position.x, desiredY, target.position.z) + offset;
                     break;
                 case BlockedAxes.z:
-                    desiredPosition = new Vector3(target.position.x, target.position.y, transform.position.z) + offset;
+
+                    float desiredZ = target.position.z;
+                    
+                    if(target.position.z > GameManager.instance.rightMapBorderPosition.z-distanceWithBorder 
+                    || target.position.z < GameManager.instance.leftMapBorderPosition.z+distanceWithBorder)
+                    {
+                        desiredY = transform.position.z;
+                    }
+
+                    desiredPosition = new Vector3(target.position.x, target.position.y, desiredZ) + offset;
                     break;
                 default:
                     desiredPosition = target.position + offset;
