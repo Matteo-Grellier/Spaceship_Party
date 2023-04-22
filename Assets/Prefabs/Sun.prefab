@@ -62,7 +62,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isSun: 1
   isBoostZone: 0
-  atractionForce: 1
+  atractionForce: 0.5
 --- !u!1001 &2677685668364960712
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -232,19 +232,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 84986307998832585, guid: f47557710adf4024a95de3d0b140bae0, type: 3}
   m_PrefabInstance: {fileID: 4506675267793306403}
   m_PrefabAsset: {fileID: 0}
---- !u!135 &1137526157002568692
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4586639004460455146}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.022081012
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &6497889810720607505
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -261,3 +248,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 110
   m_CollisionDetection: 0
+--- !u!135 &1137526157002568692
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4586639004460455146}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.022081012
+  m_Center: {x: 0, y: 0, z: 0}
