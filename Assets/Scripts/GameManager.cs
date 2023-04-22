@@ -9,6 +9,9 @@ public class GameManager : NetworkBehaviour
     #region Singleton
     public static GameManager instance;
 
+    public Vector3 leftMapBorderPosition = new Vector3(-25, 0, 500);
+    public Vector3 rightMapBorderPosition = new Vector3(25, 0, 500);
+
     void Awake()
     {
         if(instance != null)
