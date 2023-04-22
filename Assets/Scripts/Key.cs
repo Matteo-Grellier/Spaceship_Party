@@ -59,7 +59,7 @@ public class Key : MonoBehaviour
 
         if(!spaceship)
         {
-            spaceship = GameObject.FindWithTag("spaceship")?.GetComponent<Spaceship>();
+            spaceship = GameManager.instance.localPlayer.GetComponent<Spaceship>();
         }
 
         if(!isStart)
