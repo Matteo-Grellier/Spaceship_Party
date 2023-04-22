@@ -55,6 +55,7 @@ public class GameManager : NetworkBehaviour
     void RpcDisplayCounter(string counterValue)
     {
         displayedCounterValue = counterValue;
+        hasRaceStarted = true;
     }
 
     [ClientRpc]
