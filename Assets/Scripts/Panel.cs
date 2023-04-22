@@ -82,8 +82,10 @@ public class Panel : MonoBehaviour
 
     public void Displacement()
     {
-        t = 0.125f;
-        savePos = transform.position;
-        OnMoov = true;
+        if (!OnMoov) {
+            t = 0.125f;
+            savePos = transform.position;
+            OnMoov = true;
+        }
     }
 }
