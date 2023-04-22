@@ -87,8 +87,8 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   switches: []
-  multiplierSpeed: 2
-  boostSpeed: 1
+  multiplierSpeed: 10
+  boostSpeedValue: 5
   smoothSpeed: 0.125
   fuel: 1
   canRecharge: 0

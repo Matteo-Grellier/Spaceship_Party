@@ -10,12 +10,13 @@ public class Gauge : MonoBehaviour
 
     void FixedUpdate() {
 
-        if(!spaceship)
+        if(!spaceship && GameManager.instance.localPlayer != null)
         {
             spaceship = GameManager.instance.localPlayer.GetComponent<Spaceship>();
             return;
         }
 
-        GaugeUI.value = spaceship.GetFuelLevel();
+        if (spaceship != null)
+            GaugeUI.value = spaceship.GetFuelLevel();
     }
 }

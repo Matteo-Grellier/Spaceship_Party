@@ -62,11 +62,11 @@ public class Panel : MonoBehaviour
 
         // if any is activated, isBroken = true
         if (isKey || isGauge || isFuseLeft || isFuseRight)
-            isBroken = true;
+            isBroken = true; Debug.Log("isBroken = true");
 
         // if none are activated, isBroken = false
         if (!isKey && !isGauge && !isFuseLeft && !isFuseRight)
-            isBroken = false;
+            isBroken = false; Debug.Log("isBroken = false");
 
         // set their active property to the value of the boolean
         breakIndicatorKey.SetActive(isKey);
