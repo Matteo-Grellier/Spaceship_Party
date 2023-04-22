@@ -87,7 +87,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   switches: []
-  multiplierSpeed: 10
+  multiplierSpeed: 2
   boostSpeed: 1
   smoothSpeed: 0.125
   fuel: 1
@@ -406,7 +406,7 @@ GameObject:
   - component: {fileID: 5891246448609468323}
   - component: {fileID: 4877221100350387780}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: SpaceShip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
