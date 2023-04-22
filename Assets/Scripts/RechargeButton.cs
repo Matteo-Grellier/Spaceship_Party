@@ -19,7 +19,7 @@ public class RechargeButton : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     // Update is called once per frame
     void Update()
     {
-        if(!spaceship)
+        if(!spaceship && GameManager.instance.localPlayer != null)
         {
             spaceship = GameManager.instance.localPlayer.GetComponent<Spaceship>();
             return;

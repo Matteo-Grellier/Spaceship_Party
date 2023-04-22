@@ -11,7 +11,8 @@ public class Spaceship : NetworkBehaviour
     private Panel panel;
     
     public float multiplierSpeed;
-    [SerializeField] private float boostSpeed = 1f;
+    [SerializeField] private float boostSpeedValue = 2f;
+    private float boostSpeed = 1f;
     public float smoothSpeed = 0.125f;
     private float vR = 0f;
     private float vL = 0f;
@@ -25,6 +26,20 @@ public class Spaceship : NetworkBehaviour
     private bool leftReactorBroke = false;
     private bool rightReactorBroke = false;
     public bool shieldActivated = false;
+
+    public override void OnStartClient()
+    {
+        base.OnStartClient();
+        string netID = GetComponent<NetworkIdentity>().netId.ToString();
+        Spaceship clientSpaceship = GetComponent<Spaceship>();
+        GameManager.RegisterPlayer(netID, clientSpaceship);
+    }
+
+    public override void OnStopClient()
+    {
+        base.OnStopClient();
+        GameManager.UnregisterPlayer(transform.name);
+    }
 
     private void Awake() 
     {
@@ -51,7 +66,7 @@ public class Spaceship : NetworkBehaviour
             this.enabled = false;
 
         if (canBoost)
-            boostSpeed = 25f;
+            boostSpeed = boostSpeedValue;
         else 
             boostSpeed = 1f;
 
@@ -124,7 +139,7 @@ public class Spaceship : NetworkBehaviour
     {
         for (int i = startIndex; i <= stopIndex; i++) 
         {
-            if (switches[i].transform.position.z == -180) // if is down
+            if (switches[i].transform.position.z != -180) // if is down
                 switches[i]?.GetComponent<fuse>().Rotation();
         }
     }
