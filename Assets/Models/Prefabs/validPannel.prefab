@@ -733,7 +733,7 @@ PrefabInstance:
     - target: {fileID: 2474494921029296908, guid: 4f2a8192f92831a45b5af7f8e18a9f34, type: 3}
       propertyPath: sliders
       value: 
-      objectReference: {fileID: 2838672446971062636}
+      objectReference: {fileID: 0}
     - target: {fileID: 2474494921991448061, guid: 4f2a8192f92831a45b5af7f8e18a9f34, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -749,24 +749,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2474494921029296898, guid: 4f2a8192f92831a45b5af7f8e18a9f34, type: 3}
   m_PrefabInstance: {fileID: 2537835006916548970}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &103335929791019625 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2474494921029296899, guid: 4f2a8192f92831a45b5af7f8e18a9f34, type: 3}
-  m_PrefabInstance: {fileID: 2537835006916548970}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2838672446971062636
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 103335929791019625}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0476cb74adfe923618139199a2f3e3d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _slidersAverageText: {fileID: 0}
 --- !u!1001 &5380369773229931017
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -774,6 +756,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4408123042048409095}
     m_Modifications:
+    - target: {fileID: 8074179826465557604, guid: a8c978834f90fce4da6e80539b3f3744, type: 3}
+      propertyPath: panel
+      value: 
+      objectReference: {fileID: 5119705653618288535}
     - target: {fileID: 8074179826465557606, guid: a8c978834f90fce4da6e80539b3f3744, type: 3}
       propertyPath: m_Name
       value: key

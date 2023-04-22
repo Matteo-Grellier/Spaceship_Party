@@ -1,28 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BreakIndicator : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public bool isBroken = true;
-    public GameObject img;
+    public bool isBroken = false;
+    public Image img;
     private bool isWaiting = false;
-    private void Start() {
-        img.SetActive(false);
+
+    private void Start() 
+    {
+        img.enabled = false;
     }
-    // Update is called once per frame
-    void FixedUpdate() {
-        if (isBroken){
-            if (!isWaiting){
-                img.SetActive(!img.active);
+
+    void FixedUpdate() 
+    {
+        if (isBroken)
+        {
+            if (!isWaiting)
+            {
+                img.enabled = !img.enabled;
                 isWaiting = true;
                 StartCoroutine(wait());   
             }
-        } else{
-            img.SetActive(false);
+        } 
+        else
+        {
+            img.enabled = false;
         }
     }
+
     IEnumerator wait()
     {
         yield return new WaitForSeconds(1);

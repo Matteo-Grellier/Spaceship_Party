@@ -12,7 +12,7 @@ public class Gauge : MonoBehaviour
 
         if(!spaceship)
         {
-            spaceship = GameObject.FindWithTag("spaceship")?.GetComponent<Spaceship>();
+            spaceship = GameManager.instance.localPlayer.GetComponent<Spaceship>();
             return;
         }
 

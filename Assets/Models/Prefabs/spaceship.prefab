@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 3508676998418473860}
   - component: {fileID: 8655650022597829072}
   - component: {fileID: 1371632652056063471}
+  - component: {fileID: -38861433833841696}
   m_Layer: 0
   m_Name: spaceship
   m_TagString: spaceship
@@ -134,6 +135,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 662961e21ec76c341bb39028ea88e680, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0.1
   multiplierSpeed: 25
   boostSpeed: 1
   smoothSpeed: 0.125
@@ -189,6 +193,35 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.3
   m_Center: {x: 0, y: 0.0025, z: -2.3283064e-10}
+--- !u!114 &-38861433833841696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1306837973801804091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff3ba0becae47b8b9381191598957c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 1
+  syncMode: 0
+  syncInterval: 0
+  target: {fileID: 1830997584181918593}
+  clientAuthority: 0
+  syncPosition: 1
+  syncRotation: 1
+  syncScale: 0
+  showGizmos: 0
+  showOverlay: 0
+  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+  onlySyncOnChange: 1
+  onlySyncOnChangeCorrectionMultiplier: 2
+  rotationSensitivity: 0.01
+  compressRotation: 0
+  positionPrecision: 0.01
+  scalePrecision: 0.01
 --- !u!1 &2225829243684277666
 GameObject:
   m_ObjectHideFlags: 0

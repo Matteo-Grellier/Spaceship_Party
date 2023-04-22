@@ -21,19 +21,28 @@ public class GameManager : NetworkBehaviour
 
     #endregion
 
+    public GameObject localPlayer;
+    [SerializeField] private GameObject launchBtn;
+
     public bool hasRaceStarted = false;
     public string displayedCounterValue;
-    
-    // Start is called before the first frame update
-    void Start()
+
+    private void Start() 
     {
-        StartCoroutine(LaunchRaceCounter(10));
+        if (isServer)
+            launchBtn.SetActive(true);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update() 
     {
-        
+        if(localPlayer == null )
+            localPlayer = NetworkClient.localPlayer.gameObject;
+    }
+
+    public void LaunchRaceIfServer()
+    {
+        StartCoroutine(LaunchRaceCounter(10));
+        launchBtn.SetActive(false);
     }
 
     [Server]
@@ -47,6 +56,7 @@ public class GameManager : NetworkBehaviour
         }
 
         RpcDisplayCounter("Go!");
+        RpcLaunchRace();
         hasRaceStarted = true;
     }
 
@@ -54,6 +64,14 @@ public class GameManager : NetworkBehaviour
     void RpcDisplayCounter(string counterValue)
     {
         displayedCounterValue = counterValue;
+        Debug.Log(counterValue);
+        RpcDebugLog(counterValue);
+    }
+
+    [ClientRpc]
+    void RpcLaunchRace()
+    {
+        hasRaceStarted = true;
     }
 
     [ClientRpc]
