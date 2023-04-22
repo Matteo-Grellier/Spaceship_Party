@@ -7,24 +7,31 @@ public class SphereTrigger : MonoBehaviour
     public bool isSun = false;
     public bool isBoostZone = true;
     private bool isAttract = false;
+    [Range(0.0f, 0.01f)] public float atractionForce = 0.01f;
 
 
     public void Update()
     {
         if (isAttract)
         {
-            rb.AddForce(direction);
+            rb.AddForce(direction * atractionForce);
         }
     }
 
-    // Exécuter lorsque l'objet entre dans la zone de détection
+    // Exï¿½cuter lorsque l'objet entre dans la zone de dï¿½tection
     public void OnTriggerStay(Collider other)
     {
         Vector3 posPlanet;
         Vector3 posPlayer;
 
-        if (other.gameObject.CompareTag("spaceship"))
+        if (other.gameObject.CompareTag("spaceship") && other is Collider)
         {
+            Collider trigger = other;
+            if (trigger.isTrigger == true) // if its the sphere trigger of the spaceship, does nothing
+            {
+                return;
+            }
+
             isAttract = true;
             
             rb = other.GetComponent<Rigidbody>();
@@ -45,7 +52,7 @@ public class SphereTrigger : MonoBehaviour
         }
     }
 
-    // Exécuter lorsque l'objet sort de la zone de détection
+    // Exï¿½cuter lorsque l'objet sort de la zone de dï¿½tection
     public void OnTriggerExit(Collider other)
     {
         if (other.gameObject.CompareTag("spaceship"))
