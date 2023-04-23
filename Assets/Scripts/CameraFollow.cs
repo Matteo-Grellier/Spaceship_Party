@@ -105,6 +105,19 @@ public class CameraFollow : MonoBehaviour
         }
     }
 
+    public Transform Target
+    {
+        get
+        {
+            return this.target;
+        }
+
+        set
+        {
+            target = value;
+        }
+    }
+
     private float DesiredBlockPosition(float targetPositionAxe, float rightBorderAxe, float leftBorderAxe, float transformPositionAxe) 
     {
         float distanceWithBorder = 15;
@@ -132,6 +145,8 @@ public class CameraFollow : MonoBehaviour
         else 
         {
             Vector3 smoothPosition = Vector3.Lerp(transform.position, DesiredPosition, smoothSpeed);
+
+            Debug.Log(smoothPosition);
 
             transform.position = smoothPosition;
 
