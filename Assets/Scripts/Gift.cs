@@ -14,7 +14,7 @@ public class Gift : MonoBehaviour
     public void Use() 
     {
 
-        spaceship = GameObject.FindWithTag("spaceship").GetComponent<Spaceship>();
+        spaceship = GameManager.instance.localPlayer.GetComponent<Spaceship>();
 
         switch (name)
         {
