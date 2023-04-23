@@ -20,6 +20,8 @@ public class FinishLine : MonoBehaviour
     {
         if (other.gameObject.CompareTag("spaceship") && other is Collider)
         {
+            if (other.isTrigger) return; // if its the sphere trigger of the spaceship, does nothing
+
             GameManager.instance.winner = other.gameObject.GetComponent<Spaceship>();
         }
     }

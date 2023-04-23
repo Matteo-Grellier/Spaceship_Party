@@ -24,11 +24,12 @@ public class GameManager : NetworkBehaviour
     // reference to the localPlayer
     public GameObject localPlayer;
 
+    public CameraFollow playerCamera;
     
     public Spaceship winner;
     public Vector3 leftMapBorderPosition = new Vector3(-25, 0, 500);
     public Vector3 rightMapBorderPosition = new Vector3(25, 0, 500);
-    
+
     // List of all the players in the game
     private static Dictionary<string, Spaceship> players = new Dictionary<string, Spaceship>();
     
@@ -53,7 +54,24 @@ public class GameManager : NetworkBehaviour
 
     private void FinishGame() 
     {
-        Debug.Log("[THE GAME IS FINISH BECAUSE THERE IS A VERY BIG WINNER DUUUDE]");
+        // Debug.Log("[THE GAME IS FINISH BECAUSE THERE IS A VERY BIG WINNER DUUUDE]");
+
+        hasRaceStarted = false;
+
+        Debug.Log(playerCamera.Target);
+        
+        playerCamera.blockedCameraPosition = CameraFollow.BlockedAxes.none;
+        playerCamera.blockedCameraRotation = CameraFollow.BlockedAxes.none;
+        playerCamera.Target = winner.transform;
+        playerCamera.offset = new Vector3(0f, 10f, 0f);
+        Debug.Log(playerCamera.offset);
+
+
+        foreach(KeyValuePair<string, Spaceship> player in players) 
+        {
+            player.Value.SetInteractableSliders(false);
+            player.Value.SetSlidersValue(0f);
+        }
     }
 
     public static void RegisterPlayer(string netID, Spaceship spaceship)
