@@ -9,6 +9,8 @@ public class Spaceship : NetworkBehaviour
     private Slider _sliderL;
     public GameObject[] switches;
     private Panel panel;
+    [SerializeField] private GameObject[] spaceshipsColors;
+    [SerializeField] private Gradient[] trailsColors;
     
     public float multiplierSpeed;
     [SerializeField] private float boostSpeedValue = 2f;
@@ -30,9 +32,16 @@ public class Spaceship : NetworkBehaviour
     public override void OnStartClient()
     {
         base.OnStartClient();
-        string netID = GetComponent<NetworkIdentity>().netId.ToString();
+        uint netID = GetComponent<NetworkIdentity>().netId;
+        string netIdString = netID.ToString();
         Spaceship clientSpaceship = GetComponent<Spaceship>();
-        GameManager.RegisterPlayer(netID, clientSpaceship);
+        GameManager.RegisterPlayer(netIdString, clientSpaceship);
+
+        // spawn the good ship
+        GameObject spaceship = Instantiate(spaceshipsColors[(netID - 2) % 4], transform.position, transform.rotation, gameObject.transform);
+        spaceship.transform.Rotate( new Vector3(0, 180, 0)); // returns it
+        transform.GetComponentInChildren<TrailRenderer>().colorGradient = trailsColors[(netID - 2) % 4];
+
     }
 
     public override void OnStopClient()
