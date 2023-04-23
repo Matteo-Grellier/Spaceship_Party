@@ -9,8 +9,6 @@ public class GameManager : NetworkBehaviour
     #region Singleton
     public static GameManager instance;
 
-    public Spaceship winner;
-
     void Awake()
     {
         if(instance != null)
@@ -23,9 +21,18 @@ public class GameManager : NetworkBehaviour
 
     #endregion
 
+    // reference to the localPlayer
     public GameObject localPlayer;
-    [SerializeField] private GameObject launchBtn;
 
+    
+    public Spaceship winner;
+    public Vector3 leftMapBorderPosition = new Vector3(-25, 0, 500);
+    public Vector3 rightMapBorderPosition = new Vector3(25, 0, 500);
+    
+    // List of all the players in the game
+    private static Dictionary<string, Spaceship> players = new Dictionary<string, Spaceship>();
+    
+    [SerializeField] private GameObject launchBtn;
     public bool hasRaceStarted = false;
     public string displayedCounterValue;
 
@@ -47,6 +54,30 @@ public class GameManager : NetworkBehaviour
     private void FinishGame() 
     {
         Debug.Log("[THE GAME IS FINISH BECAUSE THERE IS A VERY BIG WINNER DUUUDE]");
+    }
+
+    public static void RegisterPlayer(string netID, Spaceship spaceship)
+    {
+        string newPlayerName = "Player" + netID;
+        players.Add( newPlayerName, spaceship);
+        spaceship.transform.name = newPlayerName;
+    }
+
+    public static void UnregisterPlayer(string playerId)
+    {
+        players.Remove(playerId);
+    }
+
+    private void OnGUI() 
+    {
+        GUILayout.BeginArea(new Rect(200,200,200,500));
+        GUILayout.BeginVertical();
+        foreach(string playerId in players.Keys)
+        {
+            GUILayout.Label(playerId + " - " + players[playerId].transform.name);
+        }
+        GUILayout.EndVertical();
+        GUILayout.EndArea();
     }
 
     public void LaunchRaceIfServer()
