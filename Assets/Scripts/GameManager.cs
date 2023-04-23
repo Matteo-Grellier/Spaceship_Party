@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Mirror;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : NetworkBehaviour
@@ -34,6 +35,7 @@ public class GameManager : NetworkBehaviour
     private static Dictionary<string, Spaceship> players = new Dictionary<string, Spaceship>();
     
     [SerializeField] private GameObject launchBtn;
+    [SerializeField] private GameObject winnerText;
     public bool hasRaceStarted = false;
     public string displayedCounterValue;
 
@@ -54,12 +56,13 @@ public class GameManager : NetworkBehaviour
 
     private void FinishGame() 
     {
-        // Debug.Log("[THE GAME IS FINISH BECAUSE THERE IS A VERY BIG WINNER DUUUDE]");
-
         hasRaceStarted = false;
 
-        Debug.Log(playerCamera.Target);
-        
+        GameObject winnerName = winnerText.transform.GetChild(1).gameObject;
+
+        winnerName.GetComponent<TextMeshProUGUI>().text = winner.name;
+        winnerText.SetActive(true);
+       
         playerCamera.blockedCameraPosition = CameraFollow.BlockedAxes.none;
         playerCamera.blockedCameraRotation = CameraFollow.BlockedAxes.none;
         playerCamera.Target = winner.transform;
