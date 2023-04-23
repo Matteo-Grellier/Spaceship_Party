@@ -16,7 +16,7 @@ public class Detector : MonoBehaviour
     private void OnTriggerEnter(Collider other) 
     {
         print(other.gameObject.name);
-        if(other.gameObject.name is "Obstacle")
+        if(other.gameObject.tag is "obstacle")
         {
             detectorRed.SetActive(true);
             detectorRed.transform.LookAt(other.gameObject.transform);
