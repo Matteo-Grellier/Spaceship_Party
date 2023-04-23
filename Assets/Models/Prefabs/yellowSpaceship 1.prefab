@@ -69,8 +69,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.010016859, y: 0.005, z: 0.01}
-  m_Center: {x: 0.00000843972, y: 0.0025, z: 0}
+  m_Size: {x: 0.16, y: 0.07, z: 0.17}
+  m_Center: {x: 0, y: 0, z: -0.02}
 --- !u!114 &2225829243593405619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87,6 +87,124 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   switches: []
+  spaceshipsColors:
+  - {fileID: 3995912762889723480, guid: bacbd435069710a4eaef57998762b3bd, type: 3}
+  - {fileID: 4993065796265941142, guid: 2090d2349755e334a8c16890874f6621, type: 3}
+  - {fileID: 7384885540396214850, guid: 751406142b2df4646a871097d3bd70d9, type: 3}
+  - {fileID: 2152543458572296996, guid: 1449dac720d95e14e96efa91e3f6fca5, type: 3}
+  trailsColors:
+  - serializedVersion: 2
+    key0: {r: 0, g: 0, b: 1, a: 0.7529412}
+    key1: {r: 0.1254902, g: 0.12156863, b: 0.1254902, a: 0}
+    key2: {r: 0.1254902, g: 0.12156863, b: 0.1254902, a: 0.7529412}
+    key3: {r: 0.1254902, g: 0.12156863, b: 0.1254902, a: 0.7529412}
+    key4: {r: 0.1254902, g: 0.12156863, b: 0.1254902, a: 0.7529412}
+    key5: {r: 0.1254902, g: 0.12156863, b: 0.1254902, a: 0.7529412}
+    key6: {r: 0.1254902, g: 0.12156863, b: 0.1254902, a: 0.7529412}
+    key7: {r: 0.1254902, g: 0.12156863, b: 0.1254902, a: 0.7529412}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  - serializedVersion: 2
+    key0: {r: 1, g: 0, b: 0, a: 1}
+    key1: {r: 1, g: 1, b: 1, a: 0}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  - serializedVersion: 2
+    key0: {r: 0, g: 1, b: 0, a: 1}
+    key1: {r: 0, g: 0, b: 0, a: 0}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  - serializedVersion: 2
+    key0: {r: 1, g: 1, b: 0, a: 1}
+    key1: {r: 0, g: 0, b: 0, a: 0}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
   multiplierSpeed: 10
   boostSpeedValue: 5
   smoothSpeed: 0.125
@@ -411,7 +529,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6500380684571398491
 Transform:
   m_ObjectHideFlags: 0
