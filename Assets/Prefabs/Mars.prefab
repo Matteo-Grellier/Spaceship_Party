@@ -152,6 +152,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: mars_stylized_planet
       objectReference: {fileID: 0}
+    - target: {fileID: 84986307998832585, guid: f47557710adf4024a95de3d0b140bae0, type: 3}
+      propertyPath: m_TagString
+      value: obstacle
+      objectReference: {fileID: 0}
     - target: {fileID: 749354782434168179, guid: f47557710adf4024a95de3d0b140bae0, type: 3}
       propertyPath: m_RootOrder
       value: 1
