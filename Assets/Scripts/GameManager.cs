@@ -36,19 +36,21 @@ public class GameManager : NetworkBehaviour
     
     [SerializeField] private GameObject launchBtn;
     [SerializeField] private GameObject winnerText;
+
+    [SerializeField] private GameObject startCounter;
     public bool hasRaceStarted = false;
     public string displayedCounterValue;
 
     private void Start() 
     {
         if (isServer)
-            launchBtn.SetActive(true);
+            launchBtn.SetActive(true);        
     }
 
     private void Update() 
     {
         if(localPlayer == null )
-            localPlayer = NetworkClient.localPlayer.gameObject;
+            localPlayer = NetworkClient.localPlayer.gameObject;      
 
         if(winner != null)
             FinishGame();
@@ -105,28 +107,33 @@ public class GameManager : NetworkBehaviour
     {
         StartCoroutine(LaunchRaceCounter(10));
         launchBtn.SetActive(false);
+        startCounter.SetActive(true);
     }
 
     [Server]
     private IEnumerator LaunchRaceCounter(int counterTime)
     {
-        while(counterTime > 0) 
+        while(counterTime >= 0) 
         {
             yield return new WaitForSeconds(1);
+            
             RpcDisplayCounter(counterTime.ToString());
             counterTime--;
         }
 
         RpcDisplayCounter("Go!");
+        yield return new WaitForSeconds(1);
+
         RpcLaunchRace();
         hasRaceStarted = true;
+        startCounter.SetActive(false);
     }
 
     [ClientRpc]
     void RpcDisplayCounter(string counterValue)
     {
         displayedCounterValue = counterValue;
-        Debug.Log(counterValue);
+        startCounter.GetComponent<TextMeshProUGUI>().text = displayedCounterValue;
         RpcDebugLog(counterValue);
     }
 
