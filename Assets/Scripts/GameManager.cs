@@ -44,10 +44,7 @@ public class GameManager : NetworkBehaviour
     private void Start() 
     {
         if (isServer)
-            launchBtn.SetActive(true);
-
-        startCounter.transform.localScale = new Vector3(0, 0, 0);
-        
+            launchBtn.SetActive(true);        
     }
 
     private void Update() 
