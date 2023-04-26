@@ -28,8 +28,9 @@ public class GameManager : NetworkBehaviour
     public CameraFollow playerCamera;
     
     public Spaceship winner;
-    public Vector3 leftMapBorderPosition = new Vector3(-50, 0, 500);
-    public Vector3 rightMapBorderPosition = new Vector3(50, 0, 500);
+    
+    [SerializeField] public GameObject leftMapBorderObject;
+    [SerializeField] public GameObject rightMapBorderObject;
 
     // List of all the players in the game
     private static Dictionary<string, Spaceship> players = new Dictionary<string, Spaceship>();

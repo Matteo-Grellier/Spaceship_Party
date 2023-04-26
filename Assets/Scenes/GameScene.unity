@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5943,6 +5943,30 @@ PrefabInstance:
       propertyPath: startCounter
       value: 
       objectReference: {fileID: 1963719437}
+    - target: {fileID: 6607714120576597616, guid: 69d2e1060835b5348bbce0961ea8f7ea, type: 3}
+      propertyPath: leftBorderObject
+      value: 
+      objectReference: {fileID: 574142765}
+    - target: {fileID: 6607714120576597616, guid: 69d2e1060835b5348bbce0961ea8f7ea, type: 3}
+      propertyPath: rightBorderObject
+      value: 
+      objectReference: {fileID: 719670709}
+    - target: {fileID: 6607714120576597616, guid: 69d2e1060835b5348bbce0961ea8f7ea, type: 3}
+      propertyPath: leftMapBorderObject
+      value: 
+      objectReference: {fileID: 574142765}
+    - target: {fileID: 6607714120576597616, guid: 69d2e1060835b5348bbce0961ea8f7ea, type: 3}
+      propertyPath: rightMapBorderObject
+      value: 
+      objectReference: {fileID: 719670709}
+    - target: {fileID: 6607714120576597616, guid: 69d2e1060835b5348bbce0961ea8f7ea, type: 3}
+      propertyPath: leftMapBorderPosition.x
+      value: -50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6607714120576597616, guid: 69d2e1060835b5348bbce0961ea8f7ea, type: 3}
+      propertyPath: rightMapBorderPosition.x
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 6607714120576597617, guid: 69d2e1060835b5348bbce0961ea8f7ea, type: 3}
       propertyPath: m_RootOrder
       value: 0

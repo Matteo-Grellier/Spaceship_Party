@@ -34,8 +34,8 @@ public class CameraFollow : MonoBehaviour
 
                     float desiredX = DesiredBlockPosition(
                         target.position.x, 
-                        GameManager.instance.rightMapBorderPosition.x,
-                        GameManager.instance.leftMapBorderPosition.x,
+                        GameManager.instance.rightMapBorderObject.transform.position.x,
+                        GameManager.instance.leftMapBorderObject.transform.position.x,
                         transform.position.x
                     );
 
@@ -45,8 +45,8 @@ public class CameraFollow : MonoBehaviour
 
                     float desiredY = DesiredBlockPosition(
                         target.position.y, 
-                        GameManager.instance.rightMapBorderPosition.y,
-                        GameManager.instance.leftMapBorderPosition.y,
+                        GameManager.instance.rightMapBorderObject.transform.position.y,
+                        GameManager.instance.leftMapBorderObject.transform.position.y,
                         transform.position.y
                     );
 
@@ -56,8 +56,8 @@ public class CameraFollow : MonoBehaviour
 
                     float desiredZ = DesiredBlockPosition(
                         target.position.z, 
-                        GameManager.instance.rightMapBorderPosition.z,
-                        GameManager.instance.leftMapBorderPosition.z,
+                        GameManager.instance.rightMapBorderObject.transform.position.z,
+                        GameManager.instance.leftMapBorderObject.transform.position.z,
                         transform.position.z
                     );
 
