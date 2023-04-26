@@ -107,7 +107,7 @@ public class GameManager : NetworkBehaviour
     {
         StartCoroutine(LaunchRaceCounter(10));
         launchBtn.SetActive(false);
-        startCounter.SetActive(true);
+        RpcManageCounter(true);
     }
 
     [Server]
@@ -126,7 +126,7 @@ public class GameManager : NetworkBehaviour
 
         RpcLaunchRace();
         hasRaceStarted = true;
-        startCounter.SetActive(false);
+        RpcManageCounter(false);
     }
 
     [ClientRpc]
@@ -135,6 +135,12 @@ public class GameManager : NetworkBehaviour
         displayedCounterValue = counterValue;
         startCounter.GetComponent<TextMeshProUGUI>().text = displayedCounterValue;
         RpcDebugLog(counterValue);
+    }
+
+    [ClientRpc]
+    void RpcManageCounter(bool isActive)
+    {
+        startCounter.SetActive(isActive);
     }
 
     [ClientRpc]
