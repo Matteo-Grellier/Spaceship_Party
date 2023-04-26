@@ -91,17 +91,17 @@ public class GameManager : NetworkBehaviour
         players.Remove(playerId);
     }
 
-    private void OnGUI() 
-    {
-        GUILayout.BeginArea(new Rect(200,200,200,500));
-        GUILayout.BeginVertical();
-        foreach(string playerId in players.Keys)
-        {
-            GUILayout.Label(playerId + " - " + players[playerId].transform.name);
-        }
-        GUILayout.EndVertical();
-        GUILayout.EndArea();
-    }
+    // private void OnGUI() 
+    // {
+    //     GUILayout.BeginArea(new Rect(200,200,200,500));
+    //     GUILayout.BeginVertical();
+    //     foreach(string playerId in players.Keys)
+    //     {
+    //         GUILayout.Label(playerId + " - " + players[playerId].transform.name);
+    //     }
+    //     GUILayout.EndVertical();
+    //     GUILayout.EndArea();
+    // }
 
     public void LaunchRaceIfServer()
     {
