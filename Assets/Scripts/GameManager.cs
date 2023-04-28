@@ -33,7 +33,7 @@ public class GameManager : NetworkBehaviour
     [SerializeField] public GameObject rightMapBorderObject;
 
     // List of all the players in the game
-    private static Dictionary<string, Spaceship> players = new Dictionary<string, Spaceship>();
+    public static Dictionary<string, Spaceship> players = new Dictionary<string, Spaceship>();
     
     [SerializeField] private GameObject launchBtn;
     [SerializeField] private GameObject winnerText;
