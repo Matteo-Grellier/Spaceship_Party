@@ -33,7 +33,7 @@ public class Spaceship : NetworkBehaviour
     {
         base.OnStartClient();
         uint netID = GetComponent<NetworkIdentity>().netId;
-        string netIdString = netID.ToString();
+        string netIdString = (GameManager.players.Count + 1).ToString();
         Spaceship clientSpaceship = GetComponent<Spaceship>();
         GameManager.RegisterPlayer(netIdString, clientSpaceship);
 
