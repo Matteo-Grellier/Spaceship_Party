@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 8655650022597829072}
   - component: {fileID: 1371632652056063471}
   - component: {fileID: -4255683551586812417}
+  - component: {fileID: 6021760780244648720}
   m_Layer: 0
   m_Name: yellowSpaceship 1
   m_TagString: spaceship
@@ -67,7 +68,7 @@ BoxCollider:
   m_GameObject: {fileID: 1306837973801804091}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 0.16, y: 0.07, z: 0.17}
   m_Center: {x: 0, y: 0, z: -0.02}
@@ -123,7 +124,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   - serializedVersion: 2
     key0: {r: 1, g: 0, b: 0, a: 1}
-    key1: {r: 1, g: 1, b: 1, a: 0}
+    key1: {r: 0, g: 0, b: 0, a: 0}
     key2: {r: 0, g: 0, b: 0, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
@@ -284,6 +285,19 @@ MonoBehaviour:
   compressRotation: 0
   positionPrecision: 0.01
   scalePrecision: 0.01
+--- !u!135 &6021760780244648720
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1306837973801804091}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.09
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2521925853690956271
 GameObject:
   m_ObjectHideFlags: 0

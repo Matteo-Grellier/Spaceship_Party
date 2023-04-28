@@ -97,7 +97,8 @@ public class Spaceship : NetworkBehaviour
     void OnCollisionEnter(Collision collision) 
     {
         Vector3 relativePosition = transform.InverseTransformPoint(collision.transform.position);
-        if(relativePosition.x < 0) 
+        Debug.Log(collision.transform.position);
+        if(relativePosition.x > 0) 
         {
             DisableReactor(_sliderR);
             TurnOffSwitches(6, 11);

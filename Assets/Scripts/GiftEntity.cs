@@ -6,7 +6,7 @@ using Mirror;
 public class GiftEntity : NetworkBehaviour
 {
     private GiftButton button;
-    private string[] giftsList = new string[5] {"Rocket", "IEM", "Refuel", "Boost", "Shield"};
+    private string[] giftsList = new string[3] {"Refuel", "Boost", "Shield"};  //, "Rocket", "IEM"
 
     void Start()
     {
@@ -14,14 +14,16 @@ public class GiftEntity : NetworkBehaviour
     }
 
     [ClientRpc]
-    public void deleteGift() {
+    public void deleteGift() 
+    {
         Destroy(gameObject);
     }
 
-    void OnTriggerEnter(Collider other) {
-        if (other is BoxCollider) 
+    void OnTriggerEnter(Collider other) 
+    {
+        if (other.isTrigger == false) 
         {
-            button?.SetGift(giftsList[Random.Range(0, 4)]);
+            button?.SetGift(giftsList[Random.Range(0, 3)]);
             deleteGift();
         }
     }

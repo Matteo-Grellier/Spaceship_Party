@@ -28,8 +28,9 @@ public class GameManager : NetworkBehaviour
     public CameraFollow playerCamera;
     
     public Spaceship winner;
-    public Vector3 leftMapBorderPosition = new Vector3(-25, 0, 500);
-    public Vector3 rightMapBorderPosition = new Vector3(25, 0, 500);
+    
+    [SerializeField] public GameObject leftMapBorderObject;
+    [SerializeField] public GameObject rightMapBorderObject;
 
     // List of all the players in the game
     private static Dictionary<string, Spaceship> players = new Dictionary<string, Spaceship>();
@@ -91,23 +92,23 @@ public class GameManager : NetworkBehaviour
         players.Remove(playerId);
     }
 
-    private void OnGUI() 
-    {
-        GUILayout.BeginArea(new Rect(200,200,200,500));
-        GUILayout.BeginVertical();
-        foreach(string playerId in players.Keys)
-        {
-            GUILayout.Label(playerId + " - " + players[playerId].transform.name);
-        }
-        GUILayout.EndVertical();
-        GUILayout.EndArea();
-    }
+    // private void OnGUI() 
+    // {
+    //     GUILayout.BeginArea(new Rect(200,200,200,500));
+    //     GUILayout.BeginVertical();
+    //     foreach(string playerId in players.Keys)
+    //     {
+    //         GUILayout.Label(playerId + " - " + players[playerId].transform.name);
+    //     }
+    //     GUILayout.EndVertical();
+    //     GUILayout.EndArea();
+    // }
 
     public void LaunchRaceIfServer()
     {
         StartCoroutine(LaunchRaceCounter(10));
         launchBtn.SetActive(false);
-        startCounter.SetActive(true);
+        RpcManageCounter(true);
     }
 
     [Server]
@@ -126,7 +127,7 @@ public class GameManager : NetworkBehaviour
 
         RpcLaunchRace();
         hasRaceStarted = true;
-        startCounter.SetActive(false);
+        RpcManageCounter(false);
     }
 
     [ClientRpc]
@@ -135,6 +136,12 @@ public class GameManager : NetworkBehaviour
         displayedCounterValue = counterValue;
         startCounter.GetComponent<TextMeshProUGUI>().text = displayedCounterValue;
         RpcDebugLog(counterValue);
+    }
+
+    [ClientRpc]
+    void RpcManageCounter(bool isActive)
+    {
+        startCounter.SetActive(isActive);
     }
 
     [ClientRpc]
