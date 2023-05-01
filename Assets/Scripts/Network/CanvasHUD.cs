@@ -7,7 +7,7 @@ public class CanvasHUD : MonoBehaviour
 {
 
     public GameObject PanelOffline, PanelGame;
-    
+
     private string actualScene, lastScene;
     public Button buttonHost, buttonServer, buttonClient, buttonStop;
 
@@ -51,12 +51,11 @@ public class CanvasHUD : MonoBehaviour
         PanelGame.SetActive(false);
 
         buttonHost.onClick.AddListener(ButtonHost);
-        buttonServer.onClick.AddListener(ButtonServer);
         buttonClient.onClick.AddListener(ButtonClient);
 
         inputFieldAddress.onValueChanged.AddListener(delegate { ValueChangeCheck(); });
     }
-    public void GameScene() 
+    public void GameScene()
     {
         Destroy(GameObject.Find("Background"));
         PanelOffline.SetActive(false);
