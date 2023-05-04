@@ -1,22 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
-public class GiftEntity : MonoBehaviour
+public class GiftEntity : NetworkBehaviour
 {
     private GiftButton button;
-    private string[] giftsList = new string[5] {"Rocket", "IEM", "Refuel", "Boost", "Shield"};
+    private string[] giftsList = new string[3] {"Refuel", "Boost", "Shield"};  //, "Rocket", "IEM"
 
     void Start()
     {
         button = GameObject.Find("GiftButton").GetComponent<GiftButton>();
     }
 
-    void OnTriggerEnter(Collider other) {
-        if (other is BoxCollider) 
+    [ClientRpc]
+    public void deleteGift() 
+    {
+        Destroy(gameObject);
+    }
+
+    void OnTriggerEnter(Collider other) 
+    {
+        if (other.isTrigger == false) 
         {
-            button?.SetGift(giftsList[Random.Range(0, 4)]);
-            Destroy(gameObject);
+            button?.SetGift(giftsList[Random.Range(0, 3)]);
+            deleteGift();
         }
     }
 }

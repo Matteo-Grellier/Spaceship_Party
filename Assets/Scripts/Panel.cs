@@ -6,32 +6,34 @@ public class Panel : MonoBehaviour
 {
     private bool IsUp;
     private bool OnMoov = false;
-
     private Vector3 savePos;
-
     private Vector3 saveSize;
-
     [SerializeField] private float sizeALaMano = 280;
-
     private float t = 0.125f;
-    public bool isBreak = true;
-    public GameObject img;
+    [SerializeField] private bool isBroken = false;
+    public BreakIndicator breakIndicator;
+    public GameObject breakIndicatorKey;
+    public GameObject breakIndicatorGauge;
+    public GameObject breakIndicatorFuseLeft;
+    public GameObject breakIndicatorFuseRight;
+    private bool isWaiting = false;
+    public bool isKey = true;
+    public bool isGauge = true;
+    public bool isFuseLeft = true;
+    public bool isFuseRight = true;
 
-    // Start is called before the first frame update
-    void Start() {
+    void Start()
+    {
         savePos = transform.position;
-        img.SetActive(false);
+        breakIndicator.isBroken = false;
     }
-    void FixedUpdate() {
-        //break indicator
-        if (isBreak){
-            img.SetActive(true);
-        } else{
-            img.SetActive(false);
-        }
+
+    void FixedUpdate()
+    {
         if (OnMoov){
             if (!IsUp) {
                 transform.position = Vector3.Lerp(transform.position, new Vector3(savePos.x, savePos.y+sizeALaMano, savePos.z), t);
+                // isBroken = false;
             } else {
                 transform.position = Vector3.Lerp(transform.position, new Vector3(savePos.x, savePos.y-sizeALaMano, savePos.z), t);
             }
@@ -50,12 +52,36 @@ public class Panel : MonoBehaviour
             if (t+0.0125f>1){
                 t = 1f;
             }
-        } 
+        }
+
+        // activate/desactivate break indicator
+        if (isBroken)
+            breakIndicator.isBroken = true;
+        else
+            breakIndicator.isBroken = false;
+
+        // if any is activated, isBroken = true
+        if (isKey || isGauge || isFuseLeft || isFuseRight)
+            isBroken = true; Debug.Log("isBroken = true");
+
+        // if none are activated, isBroken = false
+        if (!isKey && !isGauge && !isFuseLeft && !isFuseRight)
+            isBroken = false; Debug.Log("isBroken = false");
+
+        // set their active property to the value of the boolean
+        breakIndicatorKey.SetActive(isKey);
+        breakIndicatorGauge.SetActive(isGauge);
+        breakIndicatorFuseLeft.SetActive(isFuseLeft);
+        breakIndicatorFuseRight.SetActive(isFuseRight);
+
     }
+
     public void Displacement()
     {
-        t = 0.125f;
-        savePos = transform.position;
-        OnMoov = true;
+        if (!OnMoov) {
+            t = 0.125f;
+            savePos = transform.position;
+            OnMoov = true;
+        }
     }
 }
